@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { db_firestore } from "../../Hooks/config";
 import {
@@ -66,17 +65,19 @@ export default function TareAndCoil() {
 
   return (
     <div>
-      <div>
-        <p>Tare and Coil Changing Updates</p>
-        <div className="right">
+      <div className="flex  flex-col gap-10 pb-6">
+        <h2 className="text-4xl font-sans font-medium">
+          Tare and Coil Changing Updates
+        </h2>
+        <div className="flex gap-8 items-center text-white">
           <button
-            bg={!isTare ? "#E65192" : "black"}
+            className={`px-6 py-2 rounded-md ${isTare ? "bg-primary" : "text-black bg-primary/20"}`}
             onClick={() => setIsTare(true)}
           >
             Tare Updates
           </button>
           <button
-            bg={isTare ? "#E65192" : "black"}
+             className={`px-6 py-2 rounded-md ${!isTare ? "bg-primary" : "text-black bg-primary/20"}`}
             onClick={() => setIsTare(false)}
           >
             Coil Changing Updates
