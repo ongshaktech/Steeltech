@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         'sans': ["Fira Sans", "sans-serif"],
       },
+      colors: {
+        primary: "#ED8C2F"
+      }
     },
   },
   plugins: [],

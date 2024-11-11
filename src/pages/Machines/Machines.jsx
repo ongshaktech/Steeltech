@@ -12,7 +12,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-import { db_firestore } from "../Hooks/config";
+import { db_firestore } from "../../Hooks/config";
 import { Triangle } from "react-loader-spinner";
 // import { Triangle } from "react-loader-spinner";
 

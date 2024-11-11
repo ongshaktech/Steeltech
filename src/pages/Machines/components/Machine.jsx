@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Machine_Logo from "../../assets/images/Machine_Logo.svg";
+import Machine_Logo from "../../../assets/images/Machine_Logo.svg";
 import {
   collection,
   limit,
@@ -8,7 +8,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db_firestore } from "../../Hooks/config";
+import { db_firestore } from "../../../Hooks/config";
 
 export default function Machine(props) {
   //   export default function Machine({ meta, machineNo, active, idleTime }) {
