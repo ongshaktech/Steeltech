@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Machines from "../pages/Machines/Machines";
 import Layout from "../shared/Layout";
 import TareAndCoil from "../pages/TareAndCoil/TareAndCoil";
+import ReportsDashboard from "../pages/ReportsDashboard/ReportsDashboard";
 
 export const routes = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const routes = createBrowserRouter([
       {
         path: "/tare-crain-updates",
         element: <TareAndCoil />,
+      },
+      {
+        path: "/reports/dashboard",
+        element: <ReportsDashboard  />,
       },
     ],
   },
