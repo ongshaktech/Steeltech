@@ -3,6 +3,7 @@ import Machines from "../pages/Machines/Machines";
 import Layout from "../shared/Layout";
 import TareAndCoil from "../pages/TareAndCoil/TareAndCoil";
 import ReportsDashboard from "../pages/ReportsDashboard/ReportsDashboard";
+import RealTimeReport from "../pages/ReportsDashboard/RealTimeReport/RealTimeReport";
 
 export const routes = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/dashboard",
         element: <ReportsDashboard  />,
+      },
+      {
+        path: "/reports/realtime-reports",
+        element: <RealTimeReport  />,
       },
     ],
   },
