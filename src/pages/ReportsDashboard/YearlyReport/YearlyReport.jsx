@@ -198,22 +198,22 @@ export default function YearlyReport() {
   ) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<tr>
-          <td className="border border-black p-2">${date}</td>
-          <td className="border border-black p-2">${machine_no}</td>
-          <td className="border border-black p-2">${product_type}</td>
+          <td class="border border-black p-2">${date}</td>
+          <td class="border border-black p-2">${machine_no}</td>
+          <td class="border border-black p-2">${product_type}</td>
 
-          <td className="border border-black p-2">${m_count}</td>
-          <td className="border border-black p-2">${m_damaged}</td>
-          <td className="border border-black p-2">${m_net}</td>
-          <td className="border border-black p-2">${m_weight}</td>
+          <td class="border border-black p-2">${m_count}</td>
+          <td class="border border-black p-2">${m_damaged}</td>
+          <td class="border border-black p-2">${m_net}</td>
+          <td class="border border-black p-2">${m_weight}</td>
 
-          <td className="border border-black p-2">${n_count}</td>
-          <td className="border border-black p-2">${n_damaged}</td>
-          <td className="border border-black p-2">${n_net}</td>
-          <td className="border border-black p-2">${n_weight}</td>
+          <td class="border border-black p-2">${n_count}</td>
+          <td class="border border-black p-2">${n_damaged}</td>
+          <td class="border border-black p-2">${n_net}</td>
+          <td class="border border-black p-2">${n_weight}</td>
 
-          <td className="border border-black p-2">${tp}</td>
-          <td className="border border-black p-2">${tw}</td>
+          <td class="border border-black p-2">${tp}</td>
+          <td class="border border-black p-2">${tw}</td>
           </tr>`;
     let ele = document.getElementById("reportStatus");
     if (ele !== null) {
@@ -224,7 +224,7 @@ export default function YearlyReport() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold py-8">Quarterly Report </h2>
+      <h2 className="text-2xl font-bold py-8">Yearly Report </h2>
 
       <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
         <h2>From</h2>

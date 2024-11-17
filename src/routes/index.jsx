@@ -9,6 +9,7 @@ import WeeklyReport from "../pages/ReportsDashboard/WeeklyReport/WeeklyReport";
 import MonthlyReport from "../pages/ReportsDashboard/MonthlyReport/MonthlyReport";
 import QuarterlyReport from "../pages/ReportsDashboard/QuarterlyReport/QuarterlyReport";
 import YearlyReport from "../pages/ReportsDashboard/YearlyReport/YearlyReport";
+import MachineEfficiency from "../pages/ReportsDashboard/MachineEfficiency/MachineEfficiency";
 
 export const routes = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/yearly-reports",
         element: <YearlyReport />,
+      },
+      {
+        path: "/reports/machine-efficiency",
+        element: <MachineEfficiency />,
       },
     ],
   },
