@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import RealTimeReportTable from "./components/RealTimeReportTable";
-import { collection, limit, onSnapshot, orderBy } from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
-import { query } from "firebase/database";
+// import { endBefore, limitToLast, query, startAfter } from "firebase/database";
+
+import { collection, query, orderBy, limit, onSnapshot, limitToLast } from 'firebase/firestore';
+import { startAfter, endBefore } from 'firebase/firestore';
 
 export default function RealTimeReport() {
   let [ReportData, setReportData] = useState([]);
   let [snap, setSnap] = useState(null);
   let [pageIndex, setPageIndex] = useState(0);
-  //   let [fetchedDataNum, setFetchedDataNum] = useState(0);
+  let [fetchedDataNum, setFetchedDataNum] = useState(0);
 
   const dataPerPage = 30;
 
@@ -26,7 +28,7 @@ export default function RealTimeReport() {
         let items = [];
         snapShot.forEach((doc) => {
           // Extract document data
-          const newItem = { id: doc?.id, ...doc.data() };
+          const newItem = { id: doc?.id, ...doc?.data() };
 
           // Check if the item already exists in the previous state
           const isExisting = prevReportData.some(
@@ -42,7 +44,10 @@ export default function RealTimeReport() {
 
         // Update page index
         if (items.length > 0) {
-          setPageIndex(pageIndex + increase);
+            setSnap(snapShot);
+            setFetchedDataNum(items.length);
+        //   setPageIndex(pageIndex + increase);
+          setPageIndex((prevPageIndex) => prevPageIndex + increase);
         }
 
         // Return only the latest 30 items
@@ -50,6 +55,9 @@ export default function RealTimeReport() {
       });
     });
   };
+
+
+  console.log("snap",fetchedDataNum,  snap)
 
   //   const putDataInTable = (q, increase) => {
   //     onSnapshot(q, (snapShot) => {
@@ -71,6 +79,12 @@ export default function RealTimeReport() {
 
   // Pagination
   const handleNextPage = () => {
+    if (!snap) {
+        console.error("Snapshot is not available yet.");
+        return;
+      }
+
+    console.log("CLicked")
     let collectionRef = collection(db_firestore, collection_name);
 
     const q = query(
@@ -83,6 +97,10 @@ export default function RealTimeReport() {
   };
 
   const handlePreviousPage = () => {
+    if (!snap) {
+        console.error("Snapshot is not available yet.");
+        return;
+      }
     let collectionRef = collection(db_firestore, collection_name);
 
     const q = query(
@@ -95,7 +113,6 @@ export default function RealTimeReport() {
     putDataInTable(q, -1);
   };
 
-  console.log("ReportData", ReportData);
 
   return (
     <div>
@@ -104,6 +121,23 @@ export default function RealTimeReport() {
         ReportData={ReportData}
         startIndex={pageIndex * dataPerPage}
       />
+
+      <div className="flex justify-center items-center py-20 gap-10">
+        <button
+          className={`px-6 py-2 rounded-full text-xl ${pageIndex === 0 ? "bg-gray-500" : "bg-yellow-500"}`}
+          onClick={handlePreviousPage}
+          disabled={pageIndex === 0}
+        >
+          Previous
+        </button>
+        <button
+          className={`px-6 py-2 rounded-full  text-xl ${fetchedDataNum < dataPerPage ? "bg-gray-500" : "bg-yellow-500"}`}
+          onClick={handleNextPage}
+          disabled={fetchedDataNum < dataPerPage}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
