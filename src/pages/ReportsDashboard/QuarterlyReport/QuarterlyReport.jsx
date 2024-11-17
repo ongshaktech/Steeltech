@@ -6,13 +6,13 @@ import { ProductTypes } from "../../../data/constants";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { FaFileDownload } from "react-icons/fa";
 
-export default function MonthlyReport() {
-  const collection_name = "machinesIndividual";
+export default function QuarterlyReport() {
   const damaged_collection = "damagedProducts";
-  let tableRef = useRef(null);
-  let year = useRef(null);
+  const collection_name = "machinesIndividual";
+  let quarterRange = useRef(null);
   let startMonth = useRef(null);
-  let endMonth = useRef(null);
+  let year = useRef(null);
+  let tableRef = useRef(null);
   const currentYear = parseInt(new Date().getFullYear());
 
   let [btnStatus, setBtnStatus] = useState(true);
@@ -34,23 +34,22 @@ export default function MonthlyReport() {
     });
   }, []);
 
-  function generateReport() {
-    let date = new Date();
-    date.setMilliseconds(0);
-    date.setSeconds(0);
-    date.setMinutes(0);
-    date.setHours(0);
-    date.setDate(1);
-    date.setMonth(parseInt(startMonth.current.value));
-    date.setFullYear(parseInt(year.current.value));
-
+  const generateReport = () => {
     let dataNum = 0;
+    let dateStart = new Date();
+    dateStart.setDate(1);
+    dateStart.setHours(0);
+    dateStart.setMinutes(0);
+    dateStart.setMilliseconds(0);
+    dateStart.setSeconds(0);
+    dateStart.setMonth(startMonth.current.value);
+    dateStart.setFullYear(year.current.value);
 
-    if (endMonth.current.value === "" || startMonth.current.value === "") {
-      setTableStatus("Month Range cannot be empty!");
+    if (quarterRange.current.value === "" || quarterRange.current.value <= 0) {
+      setTableStatus("Quarter Range cannot be empty!");
       return null;
-    } else if (endMonth.current.value < startMonth.current.value) {
-      setTableStatus("Start month should be less than end month!");
+    } else if (startMonth.current.value === "") {
+      setTableStatus("Start month cannot be empty!");
       return null;
     }
 
@@ -59,12 +58,13 @@ export default function MonthlyReport() {
 
     const putData = (dateInfo) => {
       let startDate = new Date(dateInfo);
-      let endDate = new Date(year.current.value, startDate.getMonth() + 1, 0);
+
+      let endDate = new Date(dateInfo);
+      endDate.setSeconds(59);
       endDate.setHours(23);
       endDate.setMinutes(59);
-      endDate.setSeconds(59);
-
-      // console.log(startDate, endDate);
+      endDate.setDate(0);
+      endDate.setMonth(endDate.getMonth() + 4);
 
       const ref = collection(db_firestore, collection_name);
 
@@ -124,7 +124,12 @@ export default function MonthlyReport() {
 
               if (doc_length !== 0)
                 appendTableRow(
-                  startDate.toLocaleString("default", { month: "long" }),
+                  `${startDate.toLocaleString("default", {
+                    month: "long",
+                  })}, ${startDate.getFullYear()} - 
+                                      ${endDate.toLocaleString("default", {
+                                        month: "long",
+                                      })}, ${endDate.getFullYear()}`,
                   machine_no,
                   value,
                   morning_damaged + night_damaged,
@@ -147,15 +152,15 @@ export default function MonthlyReport() {
       });
     };
 
-    while (date.getMonth() <= endMonth.current.value) {
-      putData(date);
-      date.setMonth(date.getMonth() + 1);
+    for (let i = 0; i < quarterRange.current.value; i++) {
+      putData(dateStart);
+      dateStart.setMonth(dateStart.getMonth() + 4);
     }
-  }
+  };
 
   const setTableStatus = (prompt) => {
     tableRef.current.innerHTML = `<tr>
-              <td class='border border-black text-center py-4' id='reportStatus' colSpan="9">
+              <td class="border border-black p-2" id='reportStatus' colSpan="9">
                   ${prompt}
               </td>
           </tr>`;
@@ -172,79 +177,64 @@ export default function MonthlyReport() {
   ) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<tr>
-          <td class="border border-black p-4">${date}</td>
-          <td class="border border-black p-4">${machine_no}</td>
-          <td class="border border-black p-4">${product_type}</td>
-          <td class="border border-black p-4">${damaged}</td>
-          <td class="border border-black p-4">${tp}</td>
-          <td class="border border-black p-4">${net}</td>
-          <td class="border border-black p-4">${tw}</td>
+          <td  class="border border-black p-4">${date}</td>
+          <td  class="border border-black p-4">${machine_no}</td>
+          <td  class="border border-black p-4">${product_type}</td>
+          <td  class="border border-black p-4">${damaged}</td>
+          <td  class="border border-black p-4">${tp}</td>
+          <td  class="border border-black p-4">${net}</td>
+          <td  class="border border-black p-4">${tw}</td>
           </tr>`;
     let ele = document.getElementById("reportStatus");
-    if (ele) ele.remove();
+    if (ele) {
+      ele.remove();
+    }
     tableRef.current.appendChild(tr);
   };
-
   return (
     <div>
-      <h2 className="text-2xl font-bold py-8">Monthly Report </h2>
+      <h2 className="text-2xl font-bold py-8">Quarterly Report </h2>
 
       <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
         <h2>Date</h2>
+        <input
+          type="number"
+          ref={quarterRange}
+          placeholder="Quarters"
+          style={{ width: "9rem" }}
+          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
+        />
+        From
+        <select
+          ref={startMonth}
+          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
+        >
+          <option selected disabled value="">
+            Start Month
+          </option>
+          <option value={0}>January</option>
+          <option value={1}>February</option>
+          <option value={2}>March</option>
+          <option value={3}>April</option>
+          <option value={4}>May</option>
+          <option value={5}>June</option>
+          <option value={6}>July</option>
+          <option value={7}>August</option>
+          <option value={8}>September</option>
+          <option value={9}>October</option>
+          <option value={10}>November</option>
+          <option value={11}>December</option>
+        </select>
         <select
           ref={year}
           className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
         >
-          {/* <option >Selec Year</option> */}
           <option value={currentYear}>{currentYear}</option>
           <option value={currentYear - 1}>{currentYear - 1}</option>
           <option value={currentYear - 2}>{currentYear - 2}</option>
           <option value={currentYear - 3}>{currentYear - 3}</option>
           <option value={currentYear - 4}>{currentYear - 4}</option>
         </select>
-
-        <select
-          ref={startMonth}
-          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
-        >
-          <option selected disabled value="">
-            From
-          </option>
-          <option value={0}>January</option>
-          <option value={1}>February</option>
-          <option value={2}>March</option>
-          <option value={3}>April</option>
-          <option value={4}>May</option>
-          <option value={5}>June</option>
-          <option value={6}>July</option>
-          <option value={7}>August</option>
-          <option value={8}>September</option>
-          <option value={9}>October</option>
-          <option value={10}>November</option>
-          <option value={11}>December</option>
-        </select>
-
-        <select
-          ref={endMonth}
-          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
-        >
-          <option selected disabled value="">
-            To
-          </option>
-          <option value={0}>January</option>
-          <option value={1}>February</option>
-          <option value={2}>March</option>
-          <option value={3}>April</option>
-          <option value={4}>May</option>
-          <option value={5}>June</option>
-          <option value={6}>July</option>
-          <option value={7}>August</option>
-          <option value={8}>September</option>
-          <option value={9}>October</option>
-          <option value={10}>November</option>
-          <option value={11}>December</option>
-        </select>
-
         <button
           onClick={generateReport}
           disabled={!btnStatus}
@@ -264,20 +254,20 @@ export default function MonthlyReport() {
           Download Excel Report <FaFileDownload />
         </button>
         {/* <ReactHTMLTableToExcel
-        id="xls-download-btn"
-        className="download-table-xls-button"
-        table="table-to-xls"
-        filename={`daily_report_${new Date().toLocaleDateString()}`}
-        sheet="tablexls"
-        buttonText={<FaFileDownload />}
-      /> */}
+      id="xls-download-btn"
+      className="download-table-xls-button"
+      table="table-to-xls"
+      filename={`daily_report_${new Date().toLocaleDateString()}`}
+      sheet="tablexls"
+      buttonText={<FaFileDownload />}
+    /> */}
       </div>
 
       <div className="w-full">
         <table id="table-to-xls" className="w-full">
           <thead className="bg-primary text-white font-light rounded-lg">
             <tr>
-              <th className="border border-black p-2">Week</th>
+              <th className="border border-black p-2">Quarter</th>
               <th className="border border-black p-2">Machine No.</th>
               <th className="border border-black p-2">Product Type</th>
               <th

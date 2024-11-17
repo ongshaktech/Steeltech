@@ -7,6 +7,7 @@ import RealTimeReport from "../pages/ReportsDashboard/RealTimeReport/RealTimeRep
 import DailyReport from "../pages/ReportsDashboard/DailyReport/DailyReport";
 import WeeklyReport from "../pages/ReportsDashboard/WeeklyReport/WeeklyReport";
 import MonthlyReport from "../pages/ReportsDashboard/MonthlyReport/MonthlyReport";
+import QuarterlyReport from "../pages/ReportsDashboard/QuarterlyReport/QuarterlyReport";
 
 export const routes = createBrowserRouter([
   {
@@ -22,15 +23,15 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/reports/dashboard",
-        element: <ReportsDashboard  />,
+        element: <ReportsDashboard />,
       },
       {
         path: "/reports/realtime-reports",
-        element: <RealTimeReport  />,
+        element: <RealTimeReport />,
       },
       {
         path: "/reports/daily-reports",
-        element: <DailyReport  />,
+        element: <DailyReport />,
       },
       {
         path: "/reports/weekly-reports",
@@ -39,6 +40,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/monthly-reports",
         element: <MonthlyReport />,
+      },
+      {
+        path: "/reports/quarterly-reports",
+        element: <QuarterlyReport />,
       },
     ],
   },
