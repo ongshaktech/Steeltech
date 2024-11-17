@@ -4,6 +4,7 @@ import Layout from "../shared/Layout";
 import TareAndCoil from "../pages/TareAndCoil/TareAndCoil";
 import ReportsDashboard from "../pages/ReportsDashboard/ReportsDashboard";
 import RealTimeReport from "../pages/ReportsDashboard/RealTimeReport/RealTimeReport";
+import DailyReport from "../pages/ReportsDashboard/DailyReport/DailyReport";
 
 export const routes = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/realtime-reports",
         element: <RealTimeReport  />,
+      },
+      {
+        path: "/reports/daily-reports",
+        element: <DailyReport  />,
       },
     ],
   },

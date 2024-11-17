@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import realtime_reports from "../../assets/images/realtime_reports.svg";
+import daily_report from "../../assets/images/daily_report.svg";
 
 export default function ReportsDashboard() {
   return (
@@ -14,10 +15,12 @@ export default function ReportsDashboard() {
             <p className="text-2xl">Realtime Report </p>
           </div>
         </Link>
+        <Link to="/reports/daily-reports">
         <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-          <img src={realtime_reports} alt="" className="w-[100px] h-auto" />
-          <p className="text-2xl">Realtime Report </p>
+          <img src={daily_report} alt="" className="w-[60px] h-auto" />
+          <p className="text-2xl">Daily Report </p>
         </div>
+        </Link>
         <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
           <img src={realtime_reports} alt="" className="w-[100px] h-auto" />
           <p className="text-2xl">Realtime Report </p>

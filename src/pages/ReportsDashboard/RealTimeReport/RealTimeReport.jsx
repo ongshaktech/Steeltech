@@ -57,26 +57,6 @@ export default function RealTimeReport() {
   };
 
 
-  console.log("snap",fetchedDataNum,  snap)
-
-  //   const putDataInTable = (q, increase) => {
-  //     onSnapshot(q, (snapShot) => {
-  //       let items = [];
-  //       snapShot.forEach((doc) => {
-  //         console.log("doc", { id: doc?.id, ...doc.data() });
-  //         // let newItem = ReportData.find(report => report?.)
-  //         items.push({ id: doc?.id, ...doc.data() });
-  //       });
-
-  //       //   setFetchedDataNum(items.length);
-  //       if (items.length !== 0) {
-  //         setSnap(snapShot);
-  //         setReportData(items);
-  //         setPageIndex(pageIndex + increase);
-  //       }
-  //     });
-  //   };
-
   // Pagination
   const handleNextPage = () => {
     if (!snap) {
