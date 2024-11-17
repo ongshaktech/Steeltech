@@ -21,6 +21,17 @@ export default function Sidebar() {
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
             <img src={Forming_Machine} alt="" />
+            <p className="">Overview</p>
+          </div>
+        </NavLink>
+        <NavLink
+          to="/machines"
+          className={({ isActive }) =>
+            isActive ? "bg-primary rounded-md" : ""
+          }
+        >
+          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+            <img src={Forming_Machine} alt="" />
             <p className="">Forming Machine</p>
           </div>
         </NavLink>

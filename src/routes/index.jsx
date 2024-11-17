@@ -10,6 +10,7 @@ import MonthlyReport from "../pages/ReportsDashboard/MonthlyReport/MonthlyReport
 import QuarterlyReport from "../pages/ReportsDashboard/QuarterlyReport/QuarterlyReport";
 import YearlyReport from "../pages/ReportsDashboard/YearlyReport/YearlyReport";
 import MachineEfficiency from "../pages/ReportsDashboard/MachineEfficiency/MachineEfficiency";
+import Overview from "../pages/Overview/Overview";
 
 export const routes = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Overview />,
+      },
+      {
+        path: "/machines",
         element: <Machines />,
       },
       {
