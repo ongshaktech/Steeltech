@@ -24,14 +24,27 @@ export default function Machine(props) {
       limit(1)
     );
 
-    onSnapshot(q, (snapShot) => {
-      snapShot.forEach((doc) => {
-        setTotalProduct(doc.data().count ? doc.data().count : 0);
+    let unsubscribe = onSnapshot(q, (snapShot) => {
+      const updatedData = snapShot.docs.map((doc) => ({
+        id: doc.id, // Include document ID if needed
+        ...doc.data(),
+      }));
+
+      setTotalProduct(updatedData[0]?.count ? updatedData[0]?.count : 0);
         setTotalWeight(
-          doc.data().weight == "" || NaN || null ? 0 : doc.data().weight
+          updatedData[0]?.weight == "" || NaN || null ? 0 : updatedData[0]?.weight
         );
-      });
+
+      console.log("updatedData[0]?", updatedData[0]);
+      // snapShot.forEach((doc) => {
+      //   setTotalProduct(doc.data().count ? doc.data().count : 0);
+      //   setTotalWeight(
+      //     doc.data().weight == "" || NaN || null ? 0 : doc.data().weight
+      //   );
+      // });
     });
+
+    return () => unsubscribe();
   }, []);
 
   console.log("totalProduct", totalProduct);
