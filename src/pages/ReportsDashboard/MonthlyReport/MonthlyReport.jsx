@@ -6,17 +6,19 @@ import { ProductTypes } from "../../../data/constants";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { FaFileDownload } from "react-icons/fa";
 
-export default function WeeklyReport() {
+export default function MonthlyReport() {
   const collection_name = "machinesIndividual";
   const damaged_collection = "damagedProducts";
-  let weekRange = useRef(null);
-  let dateEndRef = useRef(null);
   let tableRef = useRef(null);
+  let year = useRef(null);
+  let startMonth = useRef(null);
+  let endMonth = useRef(null);
+  const currentYear = parseInt(new Date().getFullYear());
+
   let [btnStatus, setBtnStatus] = useState(true);
   let [MachineNoList, setMachineNoList] = useState(new Set([]));
 
   useEffect(() => {
-    dateEndRef.current.valueAsDate = new Date();
     let MachineNo = new Set([]);
     // Get Machine Number List
     const ref = doc(db_firestore, `information`, "info");
@@ -32,42 +34,41 @@ export default function WeeklyReport() {
     });
   }, []);
 
-  const generateReport = () => {
+  function generateReport() {
+    let date = new Date();
+    date.setMilliseconds(0);
+    date.setSeconds(0);
+    date.setMinutes(0);
+    date.setHours(0);
+    date.setDate(1);
+    date.setMonth(parseInt(startMonth.current.value));
+    date.setFullYear(parseInt(year.current.value));
+
     let dataNum = 0;
-    let endDate = new Date(dateEndRef.current.value);
-    endDate.setHours(0);
-    endDate.setMinutes(0);
-    endDate.setMilliseconds(0);
-    endDate.setSeconds(0);
 
-    let range = parseInt(weekRange.current.value);
-
-    if (weekRange.current.value === "" || weekRange.current.value <= 0) {
-      setTableStatus("Week Range cannot be empty");
+    if (endMonth.current.value === "" || startMonth.current.value === "") {
+      setTableStatus("Month Range cannot be empty!");
       return null;
-    } else if (dateEndRef.current.value === "") {
-      setTableStatus("Date is Empty!");
+    } else if (
+      endMonth.current.value < startMonth.current.value
+    ) {
+      setTableStatus("Start month should be less than end month!");
       return null;
     }
 
-    setTableStatus("Please be Patient ...");
+    setTableStatus("Please Be Patient ...");
     setBtnStatus(false);
 
-    async function putData(dateInfo, is_last = false) {
+    const putData = (dateInfo) => {
       let startDate = new Date(dateInfo);
-      startDate.setHours(23);
-      startDate.setMinutes(59);
-      startDate.setSeconds(59);
+      let endDate = new Date(year.current.value, startDate.getMonth() + 1, 0);
+      endDate.setHours(23);
+      endDate.setMinutes(59);
+      endDate.setSeconds(59);
 
-      let endDate = new Date(dateInfo);
-      endDate.setDate(endDate.getDate() - 6);
-      endDate.setHours(0);
-      endDate.setMinutes(0);
-      endDate.setSeconds(0);
+      // console.log(startDate, endDate);
 
-      console.log(startDate, endDate);
-
-      let ref = collection(db_firestore, collection_name);
+      const ref = collection(db_firestore, collection_name);
 
       Array.from(MachineNoList).map((machine_no, index_m) => {
         ProductTypes.map((value, index_p) => {
@@ -77,10 +78,10 @@ export default function WeeklyReport() {
           let morning_damaged = 0,
             night_damaged = 0;
 
-          let q = query(
+          const q = query(
             ref,
-            where("unix_time", ">=", Math.floor(endDate.getTime() / 1000)),
-            where("unix_time", "<=", Math.floor(startDate.getTime() / 1000)),
+            where("unix_time", ">=", Math.floor(startDate.getTime() / 1000)),
+            where("unix_time", "<=", Math.floor(endDate.getTime() / 1000)),
             where("machine_no", "==", machine_no),
             where("product_type", "==", value)
           );
@@ -100,8 +101,8 @@ export default function WeeklyReport() {
             let ref = collection(db_firestore, damaged_collection);
             let q = query(
               ref,
-              where("unix_time", ">=", Math.floor(endDate.getTime() / 1000)),
-              where("unix_time", "<=", Math.floor(startDate.getTime() / 1000)),
+              where("unix_time", ">=", Math.floor(startDate.getTime() / 1000)),
+              where("unix_time", "<=", Math.floor(endDate.getTime() / 1000)),
               where("machine_no", "==", machine_no),
               where("product_type", "==", value)
             );
@@ -125,12 +126,7 @@ export default function WeeklyReport() {
 
               if (doc_length !== 0)
                 appendTableRow(
-                  `${startDate.getDate()}/${
-                    startDate.getMonth() + 1
-                  }/${startDate.getFullYear()} - 
-                                      ${endDate.getDate()}/${
-                    endDate.getMonth() + 1
-                  }/${endDate.getFullYear()}`,
+                  startDate.toLocaleString("default", { month: "long" }),
                   machine_no,
                   value,
                   morning_damaged + night_damaged,
@@ -151,17 +147,17 @@ export default function WeeklyReport() {
           });
         });
       });
-    }
+    };
 
-    for (let i = 0; i < range; i++) {
-      putData(endDate, i + 1 === range);
-      endDate.setDate(endDate.getDate() - 7);
+    while (date.getMonth() <= endMonth.current.value) {
+      putData(date);
+      date.setMonth(date.getMonth() + 1);
     }
-  };
+  }
 
   const setTableStatus = (prompt) => {
     tableRef.current.innerHTML = `<tr>
-              <td class="border border-black p-4 text-center" id='reportStatus' colSpan="9">
+              <td class='border border-black text-center py-4' id='reportStatus' colSpan="9">
                   ${prompt}
               </td>
           </tr>`;
@@ -187,34 +183,70 @@ export default function WeeklyReport() {
           <td class="border border-black p-4">${tw}</td>
           </tr>`;
     let ele = document.getElementById("reportStatus");
-    if (ele) {
-      ele.remove();
-    }
+    if (ele) ele.remove();
     tableRef.current.appendChild(tr);
   };
 
   return (
     <div>
-      <h2 className="text-2xl font-bold py-8">Weekly Report </h2>
+      <h2 className="text-2xl font-bold py-8">Monthly Report </h2>
 
       <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
-        <div className="flex gap-4 items-center">
-          <h2>Date</h2>
-          <input
-            type="number"
-            ref={weekRange}
-            className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
-            placeholder="Weeks"
-          />{" "}
-          {/*less*/}
-          <h2>To</h2>
-          <input
-            type="date"
-            ref={dateEndRef}
-            className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
-            placeholder="To"
-          />
-        </div>
+        <h2>Date</h2>
+        <select
+          ref={year}
+          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
+        >
+          {/* <option >Selec Year</option> */}
+          <option value={currentYear}>{currentYear}</option>
+          <option value={currentYear - 1}>{currentYear - 1}</option>
+          <option value={currentYear - 2}>{currentYear - 2}</option>
+          <option value={currentYear - 3}>{currentYear - 3}</option>
+          <option value={currentYear - 4}>{currentYear - 4}</option>
+        </select>
+
+        <select
+          ref={startMonth}
+          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
+        >
+          <option selected disabled value="">
+            From
+          </option>
+          <option value={0}>January</option>
+          <option value={1}>February</option>
+          <option value={2}>March</option>
+          <option value={3}>April</option>
+          <option value={4}>May</option>
+          <option value={5}>June</option>
+          <option value={6}>July</option>
+          <option value={7}>August</option>
+          <option value={8}>September</option>
+          <option value={9}>October</option>
+          <option value={10}>November</option>
+          <option value={11}>December</option>
+        </select>
+
+        <select
+          ref={endMonth}
+          className="p-2 rounded-md outline-none focus:outline-none border border-gray-400"
+        >
+          <option selected disabled value="">
+            To
+          </option>
+          <option value={0}>January</option>
+          <option value={1}>February</option>
+          <option value={2}>March</option>
+          <option value={3}>April</option>
+          <option value={4}>May</option>
+          <option value={5}>June</option>
+          <option value={6}>July</option>
+          <option value={7}>August</option>
+          <option value={8}>September</option>
+          <option value={9}>October</option>
+          <option value={10}>November</option>
+          <option value={11}>December</option>
+        </select>
+
         <button
           onClick={generateReport}
           disabled={!btnStatus}
@@ -234,13 +266,13 @@ export default function WeeklyReport() {
           Download Excel Report <FaFileDownload />
         </button>
         {/* <ReactHTMLTableToExcel
-            id="xls-download-btn"
-            className="download-table-xls-button"
-            table="table-to-xls"
-            filename={`daily_report_${new Date().toLocaleDateString()}`}
-            sheet="tablexls"
-            buttonText={<FaFileDownload />}
-          /> */}
+        id="xls-download-btn"
+        className="download-table-xls-button"
+        table="table-to-xls"
+        filename={`daily_report_${new Date().toLocaleDateString()}`}
+        sheet="tablexls"
+        buttonText={<FaFileDownload />}
+      /> */}
       </div>
 
       <div className="w-full">
@@ -277,7 +309,7 @@ export default function WeeklyReport() {
         </table>
       </div>
       {/* <DailyReportTable
-        /> */}
+    /> */}
     </div>
   );
 }
