@@ -5,6 +5,7 @@ import TareAndCoil from "../pages/TareAndCoil/TareAndCoil";
 import ReportsDashboard from "../pages/ReportsDashboard/ReportsDashboard";
 import RealTimeReport from "../pages/ReportsDashboard/RealTimeReport/RealTimeReport";
 import DailyReport from "../pages/ReportsDashboard/DailyReport/DailyReport";
+import WeeklyReport from "../pages/ReportsDashboard/WeeklyReport/WeeklyReport";
 
 export const routes = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/daily-reports",
         element: <DailyReport  />,
+      },
+      {
+        path: "/reports/weekly-reports",
+        element: <WeeklyReport />,
       },
     ],
   },

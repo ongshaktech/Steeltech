@@ -16,15 +16,17 @@ export default function ReportsDashboard() {
           </div>
         </Link>
         <Link to="/reports/daily-reports">
-        <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-          <img src={daily_report} alt="" className="w-[60px] h-auto" />
-          <p className="text-2xl">Daily Report </p>
-        </div>
+          <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
+            <img src={daily_report} alt="" className="w-[60px] h-auto" />
+            <p className="text-2xl">Daily Report </p>
+          </div>
         </Link>
-        <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-          <img src={realtime_reports} alt="" className="w-[100px] h-auto" />
-          <p className="text-2xl">Realtime Report </p>
-        </div>
+        <Link to="/reports/weekly-reports">
+          <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
+            <img src={realtime_reports} alt="" className="w-[100px] h-auto" />
+            <p className="text-2xl">Weekly Report </p>
+          </div>
+        </Link>
         <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
           <img src={realtime_reports} alt="" className="w-[100px] h-auto" />
           <p className="text-2xl">Realtime Report </p>

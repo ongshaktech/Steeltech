@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import DailyReportTable from "./components/DailyReportTable";
 import { collection, doc, getDoc, getDocs, where } from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
 import { query } from "firebase/database";
