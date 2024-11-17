@@ -8,6 +8,7 @@ import DailyReport from "../pages/ReportsDashboard/DailyReport/DailyReport";
 import WeeklyReport from "../pages/ReportsDashboard/WeeklyReport/WeeklyReport";
 import MonthlyReport from "../pages/ReportsDashboard/MonthlyReport/MonthlyReport";
 import QuarterlyReport from "../pages/ReportsDashboard/QuarterlyReport/QuarterlyReport";
+import YearlyReport from "../pages/ReportsDashboard/YearlyReport/YearlyReport";
 
 export const routes = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/quarterly-reports",
         element: <QuarterlyReport />,
+      },
+      {
+        path: "/reports/yearly-reports",
+        element: <YearlyReport />,
       },
     ],
   },
