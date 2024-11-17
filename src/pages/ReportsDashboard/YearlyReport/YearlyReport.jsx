@@ -201,17 +201,17 @@ export default function YearlyReport() {
           <td className="border border-black p-2">${date}</td>
           <td className="border border-black p-2">${machine_no}</td>
           <td className="border border-black p-2">${product_type}</td>
-          
+
           <td className="border border-black p-2">${m_count}</td>
           <td className="border border-black p-2">${m_damaged}</td>
           <td className="border border-black p-2">${m_net}</td>
           <td className="border border-black p-2">${m_weight}</td>
-  
+
           <td className="border border-black p-2">${n_count}</td>
           <td className="border border-black p-2">${n_damaged}</td>
           <td className="border border-black p-2">${n_net}</td>
           <td className="border border-black p-2">${n_weight}</td>
-          
+
           <td className="border border-black p-2">${tp}</td>
           <td className="border border-black p-2">${tw}</td>
           </tr>`;
@@ -279,56 +279,56 @@ export default function YearlyReport() {
 
       <div className="w-full">
         <table id="table-to-xls" className="w-full">
-          <thead className="bg-primary text-white font-light rounded-lg">
-            <tr>
-              <th className="border border-black p-2" rowSpan="2">
-                Date
-              </th>
-              <th className="border border-black p-2" rowSpan="2">
-                Machine No.
-              </th>
-              <th className="border border-black p-2" rowSpan="2">
-                Product Type
-              </th>
-              <th className="border border-black p-2" colSpan="4">
-                Morning
-              </th>
-              <th className="border border-black p-2" colSpan="4">
-                Night
-              </th>
-              <th className="border border-black p-2" rowSpan="2">
-                Total Product
-              </th>
-              <th className="border border-black p-2" rowSpan="2">
-                Total Weight
-              </th>
-            </tr>
-            <tr>
-              <th className="border border-black p-2">Total</th>
-              <th
-                style={{
-                  color: "#bd0000",
-                }}
-                className="border border-black p-2"
-              >
-                Damaged
-              </th>
-              <th className="border border-black p-2">Net</th>
-              <th className="border border-black p-2">Weight</th>
+  <thead className="bg-primary text-white font-light rounded-lg">
+    <tr>
+      <th className="border border-black p-2" rowSpan="2">
+        Date
+      </th>
+      <th className="border border-black p-2" rowSpan="2">
+        Machine No.
+      </th>
+      <th className="border border-black p-2" rowSpan="2">
+        Product Type
+      </th>
+      <th className="border border-black p-2" colSpan="4">
+        Morning
+      </th>
+      <th className="border border-black p-2" colSpan="4">
+        Night
+      </th>
+      <th className="border border-black p-2" rowSpan="2">
+        Total Product
+      </th>
+      <th className="border border-black p-2" rowSpan="2">
+        Total Weight
+      </th>
+    </tr>
+    <tr>
+      <th className="border border-black p-2">Total</th>
+      <th
+        style={{
+          color: "#bd0000",
+        }}
+        className="border border-black p-2"
+      >
+        Damaged
+      </th>
+      <th className="border border-black p-2">Net</th>
+      <th className="border border-black p-2">Weight</th>
 
-              <th className="border border-black p-2">Total</th>
-              <th
-                style={{
-                  color: "#bd0000",
-                }}
-                className="border border-black p-2"
-              >
-                Damaged
-              </th>
-              <th className="border border-black p-2">Net</th>
-              <th className="border border-black p-2">Weight</th>
-            </tr>
-          </thead>
+      <th className="border border-black p-2">Total</th>
+      <th
+        style={{
+          color: "#bd0000",
+        }}
+        className="border border-black p-2"
+      >
+        Damaged
+      </th>
+      <th className="border border-black p-2">Net</th>
+      <th className="border border-black p-2">Weight</th>
+    </tr>
+  </thead>
 
           <tbody ref={tableRef}>
             <tr>
@@ -345,3 +345,298 @@ export default function YearlyReport() {
     </div>
   );
 }
+
+// import React, { useEffect, useState } from "react";
+// import {
+//   collection,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   where,
+//   query,
+// } from "firebase/firestore";
+// import { db_firestore } from "../../../Hooks/config";
+// import { ProductTypes } from "../../../data/constants";
+// import { FaFileDownload } from "react-icons/fa";
+
+// export default function YearlyReport() {
+//   const collectionName = "machinesIndividual";
+//   const damagedCollection = "damagedProducts";
+
+//   const currentYear = new Date().getFullYear();
+//   const [startYear, setStartYear] = useState(currentYear);
+//   const [endYear, setEndYear] = useState(currentYear);
+//   const [machineNoList, setMachineNoList] = useState([]);
+//   const [tableRows, setTableRows] = useState([]);
+//   const [btnStatus, setBtnStatus] = useState(true);
+//   const [statusMessage, setStatusMessage] = useState(
+//     "Please Select a Date Range"
+//   );
+
+//   useEffect(() => {
+//     const fetchMachineNumbers = async () => {
+//       const ref = doc(db_firestore, "information", "info");
+//       const data = await getDoc(ref);
+//       const machineList = new Set([
+//         ...(data.data()?.forming_machine || []),
+//         ...(data.data()?.polish_machine || []),
+//       ]);
+//       setMachineNoList([...machineList]);
+//     };
+//     fetchMachineNumbers();
+//   }, []);
+
+//   const generateReport = async () => {
+//     setBtnStatus(false);
+//     setStatusMessage("Generating Report. Please wait...");
+
+//     const startDate = new Date(startYear, 0, 1);
+//     const endDate = new Date(endYear, 11, 31, 23, 59, 59);
+
+//     const promises = [];
+
+//     machineNoList.forEach((machineNo) => {
+//       ProductTypes.forEach((productType) => {
+//         promises.push(
+//           fetchMachineData(startDate, endDate, machineNo, productType)
+//         );
+//       });
+//     });
+
+//     const results = await Promise.all(promises);
+//     const flattenedRows = results.flat();
+//     if (flattenedRows.length === 0) {
+//       setStatusMessage("No Data Available in this Date Range");
+//     } else {
+//       setTableRows(flattenedRows);
+//     }
+
+//     setBtnStatus(true);
+//   };
+
+//   const fetchMachineData = async (
+//     startDate,
+//     endDate,
+//     machineNo,
+//     productType
+//   ) => {
+//     const ref = collection(db_firestore, collectionName);
+//     const damagedRef = collection(db_firestore, damagedCollection);
+
+//     const q = query(
+//       ref,
+//       where("unix_time", ">=", Math.floor(startDate.getTime() / 1000)),
+//       where("unix_time", "<=", Math.floor(endDate.getTime() / 1000)),
+//       where("machine_no", "==", machineNo),
+//       where("product_type", "==", productType)
+//     );
+
+//     const docs = await getDocs(q);
+//     const data = processDocs(docs);
+
+//     const damagedQuery = query(
+//       damagedRef,
+//       where("unix_time", ">=", Math.floor(startDate.getTime() / 1000)),
+//       where("unix_time", "<=", Math.floor(endDate.getTime() / 1000)),
+//       where("machine_no", "==", machineNo),
+//       where("product_type", "==", productType)
+//     );
+
+//     const damagedDocs = await getDocs(damagedQuery);
+//     const damagedData = processDamagedDocs(damagedDocs);
+
+//     return createTableRow(
+//       startDate.getFullYear(),
+//       machineNo,
+//       productType,
+//       data,
+//       damagedData
+//     );
+//   };
+
+//   const processDocs = (docs) => {
+//     let morningCount = 0,
+//       morningWeight = 0;
+//     let nightCount = 0,
+//       nightWeight = 0;
+
+//     docs.forEach((doc) => {
+//       const data = doc.data();
+//       if (data.shift === "Morning") {
+//         morningCount += Math.abs(parseInt(data.count));
+//         morningWeight += parseFloat(data.weight);
+//       } else {
+//         nightCount += Math.abs(parseInt(data.count));
+//         nightWeight += parseFloat(data.weight);
+//       }
+//     });
+
+//     return {
+//       morningCount,
+//       morningWeight: morningWeight.toFixed(2),
+//       nightCount,
+//       nightWeight: nightWeight.toFixed(2),
+//       totalProducts: morningCount + nightCount,
+//       totalWeight: (morningWeight + nightWeight).toFixed(2),
+//     };
+//   };
+
+//   const processDamagedDocs = (docs) => {
+//     let morningDamaged = 0,
+//       nightDamaged = 0;
+
+//     docs.forEach((doc) => {
+//       const data = doc.data();
+//       if (data.shift === "Morning") {
+//         morningDamaged += parseInt(data.damagedProductCount);
+//       } else {
+//         nightDamaged += parseInt(data.damagedProductCount);
+//       }
+//     });
+
+//     return { morningDamaged, nightDamaged };
+//   };
+
+//   const createTableRow = (year, machineNo, productType, data, damagedData) => {
+//     const {
+//       morningCount,
+//       morningWeight,
+//       nightCount,
+//       nightWeight,
+//       totalProducts,
+//       totalWeight,
+//     } = data;
+
+//     const { morningDamaged, nightDamaged } = damagedData;
+
+//     return {
+//       year,
+//       machineNo,
+//       productType,
+//       morningCount,
+//       morningDamaged,
+//       morningNet: morningCount - morningDamaged,
+//       morningWeight,
+//       nightCount,
+//       nightDamaged,
+//       nightNet: nightCount - nightDamaged,
+//       nightWeight,
+//       totalProducts: totalProducts - morningDamaged - nightDamaged,
+//       totalWeight,
+//     };
+//   };
+
+//   console.log("tableRows", tableRows)
+
+//   return (
+//     <div>
+//       <h2 className="text-2xl font-bold py-8">Yearly Report</h2>
+//       {/* Date Range Selector */}
+//       <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
+//         <h2>From</h2>
+//         <select
+//           value={startYear}
+//           onChange={(e) => setStartYear(parseInt(e.target.value))}
+//           className="p-2 rounded-md border border-gray-400"
+//         >
+//           {[...Array(5)].map((_, i) => (
+//             <option key={i} value={currentYear - i}>
+//               {currentYear - i}
+//             </option>
+//           ))}
+//         </select>
+//         <h2>To</h2>
+//         <select
+//           value={endYear}
+//           onChange={(e) => setEndYear(parseInt(e.target.value))}
+//           className="p-2 rounded-md border border-gray-400"
+//         >
+//           {[...Array(5)].map((_, i) => (
+//             <option key={i} value={currentYear - i}>
+//               {currentYear - i}
+//             </option>
+//           ))}
+//         </select>
+//         <button
+//           onClick={generateReport}
+//           disabled={!btnStatus}
+//           className="px-6 py-2 rounded-full bg-purple-500 text-white"
+//         >
+//           {btnStatus ? "Generate" : "Please Wait..."}
+//         </button>
+//       </div>
+
+//       {/* Table */}
+//       <div className="w-full">
+//         <table
+//           id="reportTable"
+//           className="w-full border-collapse border border-gray-300"
+//         >
+//           <thead className="bg-primary text-white font-light rounded-lg">
+//             <tr>
+//               <th className="border border-black p-2" rowSpan="2">
+//                 Date
+//               </th>
+//               <th className="border border-black p-2" rowSpan="2">
+//                 Machine No.
+//               </th>
+//               <th className="border border-black p-2" rowSpan="2">
+//                 Product Type
+//               </th>
+//               <th className="border border-black p-2" colSpan="4">
+//                 Morning
+//               </th>
+//               <th className="border border-black p-2" colSpan="4">
+//                 Night
+//               </th>
+//               <th className="border border-black p-2" rowSpan="2">
+//                 Total Product
+//               </th>
+//               <th className="border border-black p-2" rowSpan="2">
+//                 Total Weight
+//               </th>
+//             </tr>
+//             <tr>
+//               <th className="border border-black p-2">Total</th>
+//               <th
+//                 style={{
+//                   color: "#bd0000",
+//                 }}
+//                 className="border border-black p-2"
+//               >
+//                 Damaged
+//               </th>
+//               <th className="border border-black p-2">Net</th>
+//               <th className="border border-black p-2">Weight</th>
+
+//               <th className="border border-black p-2">Total</th>
+//               <th
+//                 style={{
+//                   color: "#bd0000",
+//                 }}
+//                 className="border border-black p-2"
+//               >
+//                 Damaged
+//               </th>
+//               <th className="border border-black p-2">Net</th>
+//               <th className="border border-black p-2">Weight</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {tableRows.length > 0 ? (
+//               tableRows.map((row, idx) => (
+//                 <tr key={idx}>{/* Render Row Data */}</tr>
+//               ))
+//             ) : (
+//               <tr>
+//                 <td colSpan="13" className="text-center p-4">
+//                   {statusMessage}
+//                 </td>
+//               </tr>
+//             )}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// }
