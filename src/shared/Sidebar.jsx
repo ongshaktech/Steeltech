@@ -50,7 +50,18 @@ export default function Sidebar() {
             <p className="">Reports</p>
           </div>
         </NavLink>
-       
+        <NavLink
+          to="/manage/products"
+          className={({ isActive }) =>
+            isActive ? "bg-primary rounded-md" : ""
+          }
+        >
+          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+            <img src={Forming_Machine} alt="" />
+            <p className="">Manage Products</p>
+          </div>
+        </NavLink>
+
         <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
           <img src={Users} alt="" />
           <p className="">Manage Users</p>
@@ -66,10 +77,6 @@ export default function Sidebar() {
             <p className="">Tare & Coil Changing </p>
           </div>
         </NavLink>
-        <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-          <img src={Forming_Machine} alt="" />
-          <p className="">Manage Products</p>
-        </div>
       </div>
     </div>
   );

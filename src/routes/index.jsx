@@ -11,6 +11,7 @@ import QuarterlyReport from "../pages/ReportsDashboard/QuarterlyReport/Quarterly
 import YearlyReport from "../pages/ReportsDashboard/YearlyReport/YearlyReport";
 import MachineEfficiency from "../pages/ReportsDashboard/MachineEfficiency/MachineEfficiency";
 import Overview from "../pages/Overview/Overview";
+import ManageProducts from "../pages/ManageProducts/ManageProducts";
 
 export const routes = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/machine-efficiency",
         element: <MachineEfficiency />,
+      },
+      {
+        path: "/manage/products",
+        element: <ManageProducts />,
       },
     ],
   },
