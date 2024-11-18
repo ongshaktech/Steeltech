@@ -13,7 +13,12 @@ export default function ManageProductHeading({
       <h2 className="text-3xl font-bold ">Manage Products</h2>
 
       <div className="flex gap-4 justify-end items-center">
-        <button className="bg-primary px-4 py-2 rounded-full text-white flex gap-2 items-center">
+        <button
+          className="bg-primary px-4 py-2 rounded-full text-white flex gap-2 items-center"
+          onClick={() => {
+            setshowProductModal(true);
+          }}
+        >
           Add Product
           <CiCirclePlus className="w-6 h-6" />
         </button>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ProductTable from "./ProductTable";
 import { GetFirestoreData, useFirestore } from "../../../Hooks/firebaseFuncs";
+import ProductForm from "./ProductForm";
+import Modal from "../../../shared/Modal";
 
 export default function ManageProductTable({
   setshowProductModal,
@@ -20,12 +22,18 @@ export default function ManageProductTable({
   });
 
   const { addDocument } = useFirestore("products");
-  const { updateDocument } = useFirestore("latest_product");
+  const { updateDocument, response } = useFirestore("latest_product");
 
   useEffect(() => {
     if (Object.keys(formData).length !== 0) {
-      addDocument(formData);
-      updateDocument(`machine_${formData.machine_no}`, formData);
+      addDocument({
+        ...formData,
+        status: "pending",
+      });
+      updateDocument(`machine_${formData.machine_no}`, {
+        ...formData,
+        status: "pending",
+      });
     }
   }, [formData]);
 
@@ -47,11 +55,21 @@ export default function ManageProductTable({
     }
   }, [damagedProductData]);
 
-  console.log("TableData", TableData);
-
   return (
     <div>
       <ProductTable productData={TableData} />
+
+      {showProductModal && (
+        <Modal
+          open={showProductModal}
+          control={() => setshowProductModal(false)}
+        >
+          <ProductForm
+            setFormData={setFormData}
+            setshowProductModal={setshowProductModal}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

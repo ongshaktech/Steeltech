@@ -18,12 +18,14 @@ function formatDateTime(date) {
     );
   }
 
-export default function ProductTable({ productData }) {
+  
+  export default function ProductTable({ productData }) {
   return (
     <table className="w-full">
       <thead className="bg-primary text-white font-light rounded-lg">
         <tr className=" rounded-tl-lg">
-          <th className="border border-black p-2">Machine No.</th>
+          <th className="border border-black p-2">Sl No.</th>
+          <th className="border border-black p-2">Mazchine No.</th>
           <th className="border border-black p-2">Thickness</th>
           <th className="border border-black p-2">Dimension</th>
           <th className="border border-black p-2">Product Type</th>
@@ -33,8 +35,9 @@ export default function ProductTable({ productData }) {
 
       <tbody>
         {/* <tr> */}
-          {productData?.map((item) => (
+          {productData?.filter(item => item?.status == "approved")?.map((item, id) => (
             <tr>
+              <td class="border border-black p-4">{id + 1}</td>
               <td class="border border-black p-4">{item?.machine_no}</td>
               <td class="border border-black p-4">{item?.thickness}</td>
               <td class="border border-black p-4">
