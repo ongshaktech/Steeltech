@@ -4,6 +4,7 @@ import { GetFirestoreData, useFirestore } from "../../../Hooks/firebaseFuncs";
 import ProductForm from "./ProductForm";
 import Modal from "../../../shared/Modal";
 
+
 export default function ManageProductTable({
   setshowProductModal,
   showProductModal,

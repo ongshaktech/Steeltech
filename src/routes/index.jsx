@@ -12,6 +12,7 @@ import YearlyReport from "../pages/ReportsDashboard/YearlyReport/YearlyReport";
 import MachineEfficiency from "../pages/ReportsDashboard/MachineEfficiency/MachineEfficiency";
 import Overview from "../pages/Overview/Overview";
 import ManageProducts from "../pages/ManageProducts/ManageProducts";
+import Incharge from "../pages/Incharge/Incharge";
 
 export const routes = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const routes = createBrowserRouter([
       {
         path: "/manage/products",
         element: <ManageProducts />,
+      },
+      {
+        path: "/incharge",
+        element: <Incharge />,
       },
     ],
   },
