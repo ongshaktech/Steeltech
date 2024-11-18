@@ -17,16 +17,12 @@ import { Triangle } from "react-loader-spinner";
 // import { Triangle } from "react-loader-spinner";
 
 export default function Machines() {
-  let allMachines = Array.from({ length: 14 }).fill({});
 
   let [dataLoaded, setDataLoaded] = useState(false);
   let [dataAvailable, setDataAvailable] = useState(false);
-  let [polishMachine, setPolishMachine] = useState(<></>);
   let [formingMachine, setFormingMachine] = useState([]);
 
   let [portion, setPortion] = useState("all");
-
-  console.log("portion", portion, formingMachine);
 
   async function GetMachineIndexs() {
     const ref = doc(db_firestore, `information`, "info");
@@ -105,6 +101,8 @@ export default function Machines() {
       });
     });
   }, []);
+
+  console.log("formingMachine", formingMachine)
 
   return (
     <div className="">

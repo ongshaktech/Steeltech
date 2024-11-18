@@ -35,7 +35,6 @@ export default function Machine(props) {
           updatedData[0]?.weight == "" || NaN || null ? 0 : updatedData[0]?.weight
         );
 
-      console.log("updatedData[0]?", updatedData[0]);
       // snapShot.forEach((doc) => {
       //   setTotalProduct(doc.data().count ? doc.data().count : 0);
       //   setTotalWeight(
@@ -47,8 +46,6 @@ export default function Machine(props) {
     return () => unsubscribe();
   }, []);
 
-  console.log("totalProduct", totalProduct);
-  console.log("totalWeight", totalWeight);
 
   return (
     <div
