@@ -4,7 +4,7 @@ export default function MachineAnalytics() {
   return (
     <div className="grid grid-cols-2 gap-8 mt-10">
       <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg">
-        <h2 className="text-3xl">Real-Time Machine Data</h2>
+        <h2 className="text-3xl">List of idle machine</h2>
         <div className="grid grid-cols-3 items-center gap-6 bg-primary rounded-full p-4 text-white mt-6">
           <p>Machine Names</p>
           <p>Idle Time</p>
