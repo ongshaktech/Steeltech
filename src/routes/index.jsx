@@ -13,6 +13,7 @@ import MachineEfficiency from "../pages/ReportsDashboard/MachineEfficiency/Machi
 import Overview from "../pages/Overview/Overview";
 import ManageProducts from "../pages/ManageProducts/ManageProducts";
 import Incharge from "../pages/Incharge/Incharge";
+import AdminMachineDetails from "../pages/Admin/AdminMachineDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const routes = createBrowserRouter([
       {
         path: "/incharge",
         element: <Incharge />,
+      },
+      {
+        path: "/admin/machine-production",
+        element: <AdminMachineDetails />,
       },
     ],
   },

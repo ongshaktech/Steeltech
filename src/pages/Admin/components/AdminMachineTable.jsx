@@ -19,40 +19,40 @@ function formatDateTime(date) {
   );
 }
 
-export default function InchargeTable() {
+export default function AdminMachineTable() {
   let [TableData, setTableData] = useState([]);
 
   GetFirestoreData("products", 65).then((data) => {
     setTableData(data);
   });
 
-  console.log("incharge", TableData);
+  console.log("admin", TableData);
 
   // const { addDocument } = useFirestore("products");
-  const { updateDocument, response } = useFirestore("latest_product");
-  const { updateDocument: updateProduct } = useFirestore("products");
+//   const { updateDocument, response } = useFirestore("latest_product");
+//   const { updateDocument: updateProduct } = useFirestore("products");
 
-  const handleApprove = (item) => {
-    updateProduct(item?.id, {
-      ...item,
-      status: "approved",
-    });
-    updateDocument(`machine_${item.machine_no}`, {
-      ...item,
-      status: "approved",
-    });
-  };
+//   const handleApprove = (item) => {
+//     updateProduct(item?.id, {
+//       ...item,
+//       status: "approve",
+//     });
+//     updateDocument(`machine_${item.machine_no}`, {
+//       ...item,
+//       status: "pending",
+//     });
+//   };
 
-  const handleDecline = (item) => {
-    updateProduct(item?.id, {
-      ...item,
-      status: "declined",
-    });
-    updateDocument(`machine_${item.machine_no}`, {
-      ...item,
-      status: "declined",
-    });
-  };
+//   const handleDecline = (item) => {
+//     updateProduct(item?.id, {
+//       ...item,
+//       status: "declined",
+//     });
+//     updateDocument(`machine_${item.machine_no}`, {
+//       ...item,
+//       status: "declined",
+//     });
+//   };
 
   //   useEffect(() => {
   //     if (Object.keys(formData).length !== 0) {
@@ -91,49 +91,37 @@ export default function InchargeTable() {
         <tr className=" rounded-tl-lg">
           <th className="border border-black p-2">Sl No.</th>
           <th className="border border-black p-2">Mazchine No.</th>
-          <th className="border border-black p-2">Thickness</th>
+          {/* <th className="border border-black p-2">Thickness</th>
           <th className="border border-black p-2">Dimension</th>
-          <th className="border border-black p-2">Product Type</th>
-          <th className="border border-black p-2">Added On</th>
-          <th className="border border-black p-2">Action</th>
+          <th className="border border-black p-2">Product Type</th> */}
+          <th className="border border-black p-2">Status</th>
+          <th className="border border-black p-2">Details</th>
         </tr>
       </thead>
 
       <tbody>
         {/* <tr> */}
-        {TableData?.filter((item) => item?.status == "pending")?.map(
+        {TableData?.map(
           (item, id) => (
             <tr>
               <td class="border border-black p-4">{id + 1}</td>
               <td class="border border-black p-4">{item?.machine_no}</td>
-              <td class="border border-black p-4">{item?.thickness}</td>
+              {/* <td class="border border-black p-4">{item?.thickness}</td>
               <td class="border border-black p-4">
                 {item?.product_dimensions}
               </td>
-              <td class="border border-black p-4">{item?.product_type}</td>
+              <td class="border border-black p-4">{item?.product_type}</td> */}
               <td class="border border-black p-4">
-                {item?.creatingDate ? (
-                  formatDateTime(item.creatingDate.toDate())
-                ) : (
-                  <p>No date</p>
-                )}
+               <p className={`text-center ${item?.status == "pending" ? "text-primary" : item?.status == "approved" ? "text-green-500" : item?.status == "declined" ? "text-red-500" : ""}`}>{item?.status}</p>
               </td>
               <td class="border border-black p-4">
-                <div className="max-w-[140px] flex gap-2 items-center">
-                  <button
-                    className="btn-primary bg-red-500"
-                    onClick={() => handleDecline(item)}
-                  >
-                    Decline
-                  </button>
-                  <button
-                    className="btn-primary bg-green-500"
-                    onClick={() => handleApprove(item)}
-                  >
-                    Approve
-                  </button>
+                <div className="">
+                    <p><span className="font-bold">Production Type:</span> {item?.product_type}</p>
+                    <p><span className="font-bold">Dimension:</span> {item?.product_dimensions}</p>
+                    <p><span className="font-bold">Thickness:</span> {item?.thickness}</p>
                 </div>
               </td>
+             
             </tr>
           )
         )}
