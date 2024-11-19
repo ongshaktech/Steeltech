@@ -14,6 +14,7 @@ import Overview from "../pages/Overview/Overview";
 import ManageProducts from "../pages/ManageProducts/ManageProducts";
 import Incharge from "../pages/Incharge/Incharge";
 import AdminMachineDetails from "../pages/Admin/AdminMachineDetails";
+import { ProtectedRoute } from "../Authentication/ProtectedRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/reports/realtime-reports",
-        element: <RealTimeReport />,
+        element: (
+          <ProtectedRoute permission="manageRealtime">
+            <RealTimeReport />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/reports/daily-reports",
