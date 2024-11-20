@@ -4,6 +4,7 @@ import { GetFirestoreData, useFirestore } from "../../../Hooks/firebaseFuncs";
 import ProductForm from "./ProductForm";
 import Modal from "../../../shared/Modal";
 import ShiftForm from "./ShiftForm";
+import DamagedProductForm from "./DamagedProductForm";
 
 export default function ManageProductTable({
   setshowProductModal,
@@ -77,6 +78,18 @@ export default function ManageProductTable({
           <ShiftForm
             setShiftData={setShiftData}
             setshowProductModal={setshowProductModal}
+          />
+        </Modal>
+      )}
+
+      {damagedProductModal && (
+        <Modal
+          open={damagedProductModal}
+          control={() => setdamagedProductModal(false)}
+        >
+          <DamagedProductForm
+            setFormData={setDamagedProductData}
+            setshowProductModal={setdamagedProductModal}
           />
         </Modal>
       )}

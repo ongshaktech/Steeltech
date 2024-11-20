@@ -29,7 +29,10 @@ export default function ManageProductHeading({
           Choose Shift
           <IoMdTime className="w-6 h-6" />
         </button>
-        <button className="bg-primary px-4 py-2 rounded-full text-white flex gap-2 items-center">
+        <button
+          className="bg-primary px-4 py-2 rounded-full text-white flex gap-2 items-center"
+          onClick={() => setdamagedProductModal(true)}
+        >
           Add Damanged Product
           <GiDamagedHouse className="w-6 h-6" />
         </button>
