@@ -8,9 +8,11 @@ import { RiDashboardFill } from "react-icons/ri";
 import { TbReportSearch, TbSettingsCheck } from "react-icons/tb";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import { FaAngleDown, FaArrowDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaArrowDown } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Sidebar() {
+  let [showProductMenu, setShowProductMenu] = useState(false);
   return (
     <div className="max-w-[240px] w-full min-h-screen border-r border-r-gray-500">
       <div className="w-full py-4 ">
@@ -57,46 +59,51 @@ export default function Sidebar() {
             <p className="">Reports</p>
           </div>
         </NavLink>
-        <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+        <div
+          className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer"
+          onClick={() => setShowProductMenu(!showProductMenu)}
+        >
           <img src={Forming_Machine} alt="" />
           <p className="">Manage Products</p>
-          <FaAngleDown />
+          {showProductMenu ? <FaAngleUp /> : <FaAngleDown />}
         </div>
 
-        <div className="flex flex-col gap-3 pl-8">
-          <NavLink
-            to="/manage/products"
-            className={({ isActive }) =>
-              isActive ? "bg-primary rounded-md" : ""
-            }
-          >
-            <p className="p-2 ">All Products</p>
-          </NavLink>
-          <NavLink
-            to="/products/add-product"
-            className={({ isActive }) =>
-              isActive ? "bg-primary rounded-md" : ""
-            }
-          >
-            <p className="p-2 ">Add Product</p>
-          </NavLink>
-          <NavLink
-            to="/products/add-shift"
-            className={({ isActive }) =>
-              isActive ? "bg-primary rounded-md" : ""
-            }
-          >
-            <p className="p-2 ">Add Shift</p>
-          </NavLink>
-          <NavLink
-            to="/products/add-damaged-product"
-            className={({ isActive }) =>
-              isActive ? "bg-primary rounded-md" : ""
-            }
-          >
-            <p className="p-2 ">Add Damaged Product</p>
-          </NavLink>
-        </div>
+        {showProductMenu && (
+          <div className="flex flex-col gap-3 pl-8">
+            <NavLink
+              to="/manage/products"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">All Products</p>
+            </NavLink>
+            <NavLink
+              to="/products/add-product"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Add Product</p>
+            </NavLink>
+            <NavLink
+              to="/products/add-shift"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Add Shift</p>
+            </NavLink>
+            <NavLink
+              to="/products/add-damaged-product"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Add Damaged Product</p>
+            </NavLink>
+          </div>
+        )}
 
         <NavLink
           to="/manage/users"

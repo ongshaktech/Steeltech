@@ -21,6 +21,7 @@ export default function DamagedProductForm({
   let machine_no = useRef("");
   let damage_count = useRef("");
   let shift = useRef("");
+  let [damagedCategory, setDamagedCategory] = useState("");
 
   // get latest product info
   const selectMachine = (number) => {
@@ -34,7 +35,8 @@ export default function DamagedProductForm({
     if (
       machine_no.current.value === "" ||
       shift.current.value === "" ||
-      damage_count.current.value === ""
+      damage_count.current.value === "" ||
+      damagedCategory === ""
     ) {
       setMsg("Please fill up this form properly");
       return false;
@@ -57,6 +59,7 @@ export default function DamagedProductForm({
       shift: shift.current.value,
       thickness: lastestProduct.thickness,
       unix_time: Math.floor(Date.now() / 1000),
+      damagedCategory,
     });
     setshowProductModal(false);
     setConfirm(false);
@@ -91,7 +94,10 @@ export default function DamagedProductForm({
     });
   }, []);
   return (
-    <form className={`flex flex-col gap-4 ${!confirm ? `#ddd` : ""}`} onSubmit={setData}>
+    <form
+      className={`flex flex-col gap-4 ${!confirm ? `#ddd` : ""}`}
+      onSubmit={setData}
+    >
       <h2 className="text-2xl font-bold pb-6">Add Product</h2>
       <label className="flex gap-6 items-center">
         <p className="w-[180px]">Machine No*</p>
@@ -142,6 +148,49 @@ export default function DamagedProductForm({
         <p className="w-[180px]">Product Type:</p>
         {lastestProduct.product_type}
       </label>
+
+      <div className="flex gap-4 items-center">
+        <p
+          className={`${
+            damagedCategory == "damaged_product"
+              ? "btn-primary"
+              : "btn-primary opacity-50"
+          }`}
+          onClick={() => setDamagedCategory("damaged_product")}
+        >
+          Damaged Product
+        </p>
+        <p
+          className={` ${
+            damagedCategory == "scrap_product"
+              ? "btn-primary"
+              : "btn-primary opacity-50"
+          }`}
+          onClick={() => setDamagedCategory("scrap_product")}
+        >
+          Scrap Product
+        </p>
+        <p
+          className={` ${
+            damagedCategory == "cut_piece_product"
+              ? "btn-primary"
+              : "btn-primary opacity-50"
+          }`}
+          onClick={() => setDamagedCategory("cut_piece_product")}
+        >
+          Cut-Piece Product
+        </p>
+        <p
+          className={`${
+            damagedCategory == "b_grade_product"
+              ? "btn-primary opacity-100"
+              : "btn-primary opacity-50"
+          }`}
+          onClick={() => setDamagedCategory("b_grade_product")}
+        >
+          B-Grade Product
+        </p>
+      </div>
 
       <label
         className="flex gap-6 items-center"
