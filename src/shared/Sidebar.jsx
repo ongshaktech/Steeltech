@@ -106,6 +106,17 @@ export default function Sidebar() {
         )}
 
         <NavLink
+          to="/manage/all-machines"
+          className={({ isActive }) =>
+            isActive ? "bg-primary rounded-md" : ""
+          }
+        >
+          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+            <img src={Users} alt="" />
+            <p className="">All Machines</p>
+          </div>
+        </NavLink>
+        <NavLink
           to="/manage/users"
           className={({ isActive }) =>
             isActive ? "bg-primary rounded-md" : ""

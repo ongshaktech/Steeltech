@@ -20,6 +20,7 @@ import ProductForm from "../pages/ManageProducts/components/ProductForm";
 import AddProduct from "../pages/ManageProducts/AddProduct";
 import AddShift from "../pages/ManageProducts/AddShift";
 import AddDamangedProduct from "../pages/ManageProducts/AddDamagedProduct";
+import AllMachine from "../pages/AllMachine/AllMachine";
 
 export const routes = createBrowserRouter([
   {
@@ -72,6 +73,14 @@ export const routes = createBrowserRouter([
       {
         path: "/reports/machine-efficiency",
         element: <MachineEfficiency />,
+      },
+      {
+        path: "/manage/all-machines",
+        element: (
+          <ProtectedRoute permission="manageProduct">
+            <AllMachine />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/manage/products",

@@ -1,6 +1,6 @@
 
 import ListOfIdleMachine from "./ListOfIdleMachine";
-import { MachineEfficiency } from "./MachineEfficiency";
+// import { MachineEfficiency } from "./MachineEfficiency";
 
 export default function MachineAnalytics() {
   return (
