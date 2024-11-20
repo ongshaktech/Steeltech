@@ -104,10 +104,14 @@ export const useFirestore = (collectionName) => {
   // update something from firestore database
   const updateDocument = async (id, obj) => {
     dispatch({ type: "IS_PENDING" });
+    let updatedObj = {
+      ...obj,
+      updatedDate: serverTimestamp(),
+    };
     const userDoc = doc(ref, id);
 
     try {
-      const updated = await updateDoc(userDoc, obj);
+      const updated = await updateDoc(userDoc, updatedObj);
       dispatchIfNotCancelled({ type: "UPDATE_DOCUMENT", payload: updated });
     } catch (error) {
       dispatch({ type: "ERROR", payload: error.message });

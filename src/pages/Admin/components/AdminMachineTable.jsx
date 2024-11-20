@@ -29,30 +29,30 @@ export default function AdminMachineTable() {
   console.log("admin", TableData);
 
   // const { addDocument } = useFirestore("products");
-//   const { updateDocument, response } = useFirestore("latest_product");
-//   const { updateDocument: updateProduct } = useFirestore("products");
+  //   const { updateDocument, response } = useFirestore("latest_product");
+  //   const { updateDocument: updateProduct } = useFirestore("products");
 
-//   const handleApprove = (item) => {
-//     updateProduct(item?.id, {
-//       ...item,
-//       status: "approve",
-//     });
-//     updateDocument(`machine_${item.machine_no}`, {
-//       ...item,
-//       status: "pending",
-//     });
-//   };
+  //   const handleApprove = (item) => {
+  //     updateProduct(item?.id, {
+  //       ...item,
+  //       status: "approve",
+  //     });
+  //     updateDocument(`machine_${item.machine_no}`, {
+  //       ...item,
+  //       status: "pending",
+  //     });
+  //   };
 
-//   const handleDecline = (item) => {
-//     updateProduct(item?.id, {
-//       ...item,
-//       status: "declined",
-//     });
-//     updateDocument(`machine_${item.machine_no}`, {
-//       ...item,
-//       status: "declined",
-//     });
-//   };
+  //   const handleDecline = (item) => {
+  //     updateProduct(item?.id, {
+  //       ...item,
+  //       status: "declined",
+  //     });
+  //     updateDocument(`machine_${item.machine_no}`, {
+  //       ...item,
+  //       status: "declined",
+  //     });
+  //   };
 
   //   useEffect(() => {
   //     if (Object.keys(formData).length !== 0) {
@@ -91,6 +91,12 @@ export default function AdminMachineTable() {
         <tr className=" rounded-tl-lg">
           <th className="border border-black p-2">Sl No.</th>
           <th className="border border-black p-2">Mazchine No.</th>
+          <th className="border border-black p-2">
+            Production Plan Change Request
+          </th>
+          <th className="border border-black p-2">
+            Production Plan Change Approve
+          </th>
           {/* <th className="border border-black p-2">Thickness</th>
           <th className="border border-black p-2">Dimension</th>
           <th className="border border-black p-2">Product Type</th> */}
@@ -101,30 +107,62 @@ export default function AdminMachineTable() {
 
       <tbody>
         {/* <tr> */}
-        {TableData?.map(
-          (item, id) => (
-            <tr>
-              <td class="border border-black p-4">{id + 1}</td>
-              <td class="border border-black p-4">{item?.machine_no}</td>
-              {/* <td class="border border-black p-4">{item?.thickness}</td>
+        {TableData?.map((item, id) => (
+          <tr>
+            <td class="border border-black p-4">{id + 1}</td>
+            <td class="border border-black p-4">FM {item?.machine_no}</td>
+            <td class="border border-black p-4">
+              {item?.creatingDate ? (
+                formatDateTime(item?.creatingDate.toDate())
+              ) : (
+                <p>No date</p>
+              )}
+            </td>
+            <td class="border border-black p-4">
+              {item?.updatedDate ? (
+                formatDateTime(item?.updatedDate.toDate())
+              ) : (
+                <p>No date</p>
+              )}
+            </td>
+            {/* <td class="border border-black p-4">{item?.thickness}</td>
               <td class="border border-black p-4">
                 {item?.product_dimensions}
               </td>
               <td class="border border-black p-4">{item?.product_type}</td> */}
-              <td class="border border-black p-4">
-               <p className={`text-center ${item?.status == "pending" ? "text-primary" : item?.status == "approved" ? "text-green-500" : item?.status == "declined" ? "text-red-500" : ""}`}>{item?.status}</p>
-              </td>
-              <td class="border border-black p-4">
-                <div className="">
-                    <p><span className="font-bold">Production Type:</span> {item?.product_type}</p>
-                    <p><span className="font-bold">Dimension:</span> {item?.product_dimensions}</p>
-                    <p><span className="font-bold">Thickness:</span> {item?.thickness}</p>
-                </div>
-              </td>
-             
-            </tr>
-          )
-        )}
+            <td class="border border-black p-4">
+              <p
+                className={`text-center ${
+                  item?.status == "pending"
+                    ? "text-primary"
+                    : item?.status == "approved"
+                    ? "text-green-500"
+                    : item?.status == "declined"
+                    ? "text-red-500"
+                    : ""
+                }`}
+              >
+                {item?.status}
+              </p>
+            </td>
+            <td class="border border-black p-4">
+              <div className="">
+                <p>
+                  <span className="font-bold">Production Type:</span>{" "}
+                  {item?.product_type}
+                </p>
+                <p>
+                  <span className="font-bold">Dimension:</span>{" "}
+                  {item?.product_dimensions}
+                </p>
+                <p>
+                  <span className="font-bold">Thickness:</span>{" "}
+                  {item?.thickness}
+                </p>
+              </div>
+            </td>
+          </tr>
+        ))}
         {/* <td className="border border-gray-500 text-center py-4 " colSpan="13">
           Plase Select a Date Range
         </td> */}
