@@ -17,6 +17,9 @@ import AdminMachineDetails from "../pages/Admin/AdminMachineDetails";
 import { ProtectedRoute } from "../Authentication/ProtectedRoute";
 import ManageUsers from "../pages/ManageUsers/ManageUsers";
 import ProductForm from "../pages/ManageProducts/components/ProductForm";
+import AddProduct from "../pages/ManageProducts/AddProduct";
+import AddShift from "../pages/ManageProducts/AddShift";
+import AddDamangedProduct from "../pages/ManageProducts/AddDamagedProduct";
 
 export const routes = createBrowserRouter([
   {
@@ -75,8 +78,16 @@ export const routes = createBrowserRouter([
         element: <ManageProducts />,
       },
       {
-        path: "/manage/products/add-product",
-        element: <ProductForm />,
+        path: "/products/add-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "/products/add-shift",
+        element: <AddShift />,
+      },
+      {
+        path: "/products/add-damaged-product",
+        element: <AddDamangedProduct />,
       },
       {
         path: "/manage/users",

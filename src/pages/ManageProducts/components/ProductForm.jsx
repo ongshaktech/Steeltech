@@ -7,7 +7,7 @@ import {
 import { doc, getDoc } from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
 
-export default function ProductForm({ setFormData, setshowProductModal }) {
+export default function ProductForm({ setFormData }) {
   let [machineNumList, setMachineNumList] = useState([]);
   let [msg, setMsg] = useState("");
   let [machine_no, setMachine_no] = useState("");
@@ -36,8 +36,6 @@ export default function ProductForm({ setFormData, setshowProductModal }) {
       product_dimensions: dimension,
       // shift: shift.current.value
     });
-
-    setshowProductModal(false);
   };
 
   useEffect(() => {

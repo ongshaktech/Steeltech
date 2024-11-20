@@ -28,7 +28,6 @@ export default function AddProduct() {
     <div>
          <ProductForm
             setFormData={setFormData}
-            setshowProductModal={setshowProductModal}
           />
     </div>
   )
