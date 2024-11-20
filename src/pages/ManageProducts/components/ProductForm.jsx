@@ -10,7 +10,7 @@ import { db_firestore } from "../../../Hooks/config";
 export default function ProductForm({ setFormData, setshowProductModal }) {
   let [machineNumList, setMachineNumList] = useState([]);
   let [msg, setMsg] = useState("");
-  let [machine_no, setMachine_no] = useState("02");
+  let [machine_no, setMachine_no] = useState("");
   let [thickness, setThickness] = useState("");
   let [product_type, setProduct_type] = useState("");
   let [dimension, setDimension] = useState("");
@@ -56,7 +56,7 @@ export default function ProductForm({ setFormData, setshowProductModal }) {
   }, []);
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={setData}>
+    <form className="flex flex-col gap-8" onSubmit={setData}>
       <h2 className="text-2xl font-bold pb-6">Add Product</h2>
       <label className="flex gap-6 items-center">
         <p className="w-[180px]">Machine No*</p>

@@ -16,6 +16,7 @@ import Incharge from "../pages/Incharge/Incharge";
 import AdminMachineDetails from "../pages/Admin/AdminMachineDetails";
 import { ProtectedRoute } from "../Authentication/ProtectedRoute";
 import ManageUsers from "../pages/ManageUsers/ManageUsers";
+import ProductForm from "../pages/ManageProducts/components/ProductForm";
 
 export const routes = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const routes = createBrowserRouter([
       {
         path: "/manage/products",
         element: <ManageProducts />,
+      },
+      {
+        path: "/manage/products/add-product",
+        element: <ProductForm />,
       },
       {
         path: "/manage/users",
