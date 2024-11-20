@@ -3,7 +3,6 @@ import { collection, doc, getDoc, getDocs, where } from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
 import { query } from "firebase/database";
 import { ProductTypes } from "../../../data/constants";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { FaFileDownload } from "react-icons/fa";
 
 export default function WeeklyReport() {
@@ -233,14 +232,7 @@ export default function WeeklyReport() {
         <button className="px-6 py-2 rounded-full bg-primary text-white flex gap-3 items-center">
           Download Excel Report <FaFileDownload />
         </button>
-        {/* <ReactHTMLTableToExcel
-            id="xls-download-btn"
-            className="download-table-xls-button"
-            table="table-to-xls"
-            filename={`daily_report_${new Date().toLocaleDateString()}`}
-            sheet="tablexls"
-            buttonText={<FaFileDownload />}
-          /> */}
+     
       </div>
 
       <div className="w-full">

@@ -3,7 +3,6 @@ import { collection, doc, getDoc, getDocs, where } from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
 import { query } from "firebase/database";
 import { ProductTypes } from "../../../data/constants";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { FaFileDownload } from "react-icons/fa";
 
 export default function YearlyReport() {
@@ -267,68 +266,60 @@ export default function YearlyReport() {
         <button className="px-6 py-2 rounded-full bg-primary text-white flex gap-3 items-center">
           Download Excel Report <FaFileDownload />
         </button>
-        {/* <ReactHTMLTableToExcel
-    id="xls-download-btn"
-    className="download-table-xls-button"
-    table="table-to-xls"
-    filename={`daily_report_${new Date().toLocaleDateString()}`}
-    sheet="tablexls"
-    buttonText={<FaFileDownload />}
-  /> */}
       </div>
 
       <div className="w-full">
         <table id="table-to-xls" className="w-full">
-  <thead className="bg-primary text-white font-light rounded-lg">
-    <tr>
-      <th className="border border-black p-2" rowSpan="2">
-        Date
-      </th>
-      <th className="border border-black p-2" rowSpan="2">
-        Machine No.
-      </th>
-      <th className="border border-black p-2" rowSpan="2">
-        Product Type
-      </th>
-      <th className="border border-black p-2" colSpan="4">
-        Morning
-      </th>
-      <th className="border border-black p-2" colSpan="4">
-        Night
-      </th>
-      <th className="border border-black p-2" rowSpan="2">
-        Total Product
-      </th>
-      <th className="border border-black p-2" rowSpan="2">
-        Total Weight
-      </th>
-    </tr>
-    <tr>
-      <th className="border border-black p-2">Total</th>
-      <th
-        style={{
-          color: "#bd0000",
-        }}
-        className="border border-black p-2"
-      >
-        Damaged
-      </th>
-      <th className="border border-black p-2">Net</th>
-      <th className="border border-black p-2">Weight</th>
+          <thead className="bg-primary text-white font-light rounded-lg">
+            <tr>
+              <th className="border border-black p-2" rowSpan="2">
+                Date
+              </th>
+              <th className="border border-black p-2" rowSpan="2">
+                Machine No.
+              </th>
+              <th className="border border-black p-2" rowSpan="2">
+                Product Type
+              </th>
+              <th className="border border-black p-2" colSpan="4">
+                Morning
+              </th>
+              <th className="border border-black p-2" colSpan="4">
+                Night
+              </th>
+              <th className="border border-black p-2" rowSpan="2">
+                Total Product
+              </th>
+              <th className="border border-black p-2" rowSpan="2">
+                Total Weight
+              </th>
+            </tr>
+            <tr>
+              <th className="border border-black p-2">Total</th>
+              <th
+                style={{
+                  color: "#bd0000",
+                }}
+                className="border border-black p-2"
+              >
+                Damaged
+              </th>
+              <th className="border border-black p-2">Net</th>
+              <th className="border border-black p-2">Weight</th>
 
-      <th className="border border-black p-2">Total</th>
-      <th
-        style={{
-          color: "#bd0000",
-        }}
-        className="border border-black p-2"
-      >
-        Damaged
-      </th>
-      <th className="border border-black p-2">Net</th>
-      <th className="border border-black p-2">Weight</th>
-    </tr>
-  </thead>
+              <th className="border border-black p-2">Total</th>
+              <th
+                style={{
+                  color: "#bd0000",
+                }}
+                className="border border-black p-2"
+              >
+                Damaged
+              </th>
+              <th className="border border-black p-2">Net</th>
+              <th className="border border-black p-2">Weight</th>
+            </tr>
+          </thead>
 
           <tbody ref={tableRef}>
             <tr>

@@ -3,7 +3,6 @@ import { collection, doc, getDoc, getDocs, where } from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
 import { query } from "firebase/database";
 import { ProductThickness, ProductTypes } from "../../../data/constants";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { FaFileDownload } from "react-icons/fa";
 
 export default function MachineEfficiency() {
@@ -71,8 +70,8 @@ export default function MachineEfficiency() {
   const setTableStatus = (prompt) => {
     tableBodyRef.current.innerHTML = `<tr>
               <td class='border border-black p-2' id='reportStatus' colSpan=${
-      ProductThickness.length + 1
-    }>
+                ProductThickness.length + 1
+              }>
                   ${prompt}
               </td>
           </tr>`;
@@ -199,20 +198,14 @@ export default function MachineEfficiency() {
         <button className="px-6 py-2 rounded-full bg-primary text-white flex gap-3 items-center">
           Download Excel Report <FaFileDownload />
         </button>
-        {/* <ReactHTMLTableToExcel
-    id="xls-download-btn"
-    className="download-table-xls-button"
-    table="table-to-xls"
-    filename={`daily_report_${new Date().toLocaleDateString()}`}
-    sheet="tablexls"
-    buttonText={<FaFileDownload />}
-  /> */}
       </div>
 
       <div className="w-full">
         <table id="table-to-xls" className="w-full">
-          <thead className="bg-primary text-white font-light rounded-lg" ref={tableHeaderRef}>
-          </thead>
+          <thead
+            className="bg-primary text-white font-light rounded-lg"
+            ref={tableHeaderRef}
+          ></thead>
 
           <tbody ref={tableBodyRef}>
             <tr>
