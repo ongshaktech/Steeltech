@@ -17,13 +17,13 @@ export default function ManageUsersHeading({setshowUserModal}) {
         Add User
         <CiCirclePlus className="w-6 h-6" />
       </button>
-      <button
+      {/* <button
         className="bg-red-500 px-4 py-2 rounded-full text-white flex gap-2 items-center"
         // onClick={() => setshowShiftModal(true)}
       >
         Remove User
         <IoMdTime className="w-6 h-6" />
-      </button>
+      </button> */}
      
     </div>
   </div>

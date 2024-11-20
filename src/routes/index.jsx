@@ -75,31 +75,59 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/manage/products",
-        element: <ManageProducts />,
+        element: (
+          <ProtectedRoute permission="manageProduct">
+            <ManageProducts />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/products/add-product",
-        element: <AddProduct />,
+        element: (
+          <ProtectedRoute permission="addProduct">
+            <AddProduct />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/products/add-shift",
-        element: <AddShift />,
+        element: (
+          <ProtectedRoute permission="setShiftTime">
+            <AddShift />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/products/add-damaged-product",
-        element: <AddDamangedProduct />,
+        element: (
+          <ProtectedRoute permission="addDamagedProduct">
+            <AddDamangedProduct />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/manage/users",
-        element: <ManageUsers />,
+        element: (
+          <ProtectedRoute permission="manageUser">
+            <ManageUsers />,
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/incharge",
-        element: <Incharge />,
+        element: (
+          <ProtectedRoute permission="manageIncharge">
+            <Incharge />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/admin/machine-production",
-        element: <AdminMachineDetails />,
+        element: (
+          <ProtectedRoute permission="adminSection">
+            <AdminMachineDetails />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
