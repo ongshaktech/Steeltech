@@ -10,6 +10,7 @@ import { CiSettings } from "react-icons/ci";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { FaAngleDown, FaAngleUp, FaArrowDown } from "react-icons/fa";
 import { useState } from "react";
+import { GiVendingMachine } from "react-icons/gi";
 
 export default function Sidebar() {
   let [showProductMenu, setShowProductMenu] = useState(false);
@@ -112,7 +113,8 @@ export default function Sidebar() {
           }
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Users} alt="" />
+            {/* <img src={Users} alt="" /> */}
+            <GiVendingMachine className="w-6 h-6" />
             <p className="">All Machines</p>
           </div>
         </NavLink>
