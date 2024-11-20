@@ -218,7 +218,7 @@ export default function WeeklyReport() {
         <button
           onClick={generateReport}
           disabled={!btnStatus}
-          className="px-6 py-2 rounded-full bg-purple-500 text-white"
+          className="px-6 py-2 rounded-full bg-black text-white"
         >
           {btnStatus ? "Generate" : "Please Wait ..."}
         </button>
