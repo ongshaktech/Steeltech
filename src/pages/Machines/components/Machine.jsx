@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Machine_Logo from "../../../assets/images/Machine_Logo.svg";
+import Machine_Logo from "../../../assets/images/new_machine.svg";
 import {
   collection,
   limit,

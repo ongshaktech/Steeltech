@@ -100,7 +100,7 @@ export default function ListOfIdleMachine() {
       });
     });
   }, []);
-  console.log("formingMachine", formingMachine)
+  console.log("formingMachine", formingMachine);
 
   return (
     <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg">
@@ -110,17 +110,19 @@ export default function ListOfIdleMachine() {
         <p>Idle Time</p>
         {/* <p>Last Active time</p> */}
       </div>
-      {formingMachine?.filter(machine => !machine?.active)?.map((machine) => (
-        <div className="grid grid-cols-2 items-center gap-6  rounded-full p-2 text-black mt-6">
-          <p className="flex gap-2 items-center">
-            <img src={Machine_Logo} alt="" className="w-10 h-10" />
-            FM {machine?.machineNo}
-          </p>
-          <p>{machine?.idleTime}</p>
-          {/* <p>11/11/2024 02:06 PM</p> */}
-        </div>
-      ))}
-     
+      {formingMachine
+        ?.slice(0, 16)
+        ?.filter((machine) => !machine?.active)
+        ?.map((machine) => (
+          <div className="grid grid-cols-2 items-center gap-6  rounded-full p-2 text-black mt-6">
+            <p className="flex gap-2 items-center">
+              <img src={Machine_Logo} alt="" className="w-10 h-10" />
+              FM {machine?.machineNo}
+            </p>
+            <p>{machine?.idleTime}</p>
+            {/* <p>11/11/2024 02:06 PM</p> */}
+          </div>
+        ))}
     </div>
   );
 }

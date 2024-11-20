@@ -3,7 +3,15 @@ import { FaArrowTrendUp } from "react-icons/fa6";
 import active_machine_analytics from "../../../assets/images/active_machine_analytics.svg";
 import idle_machine_analytics from "../../../assets/images/idle_machine_analytics.svg";
 import total_machine_analytics from "../../../assets/images/total_machine_analytics.svg";
-import { collection, doc, getDoc, getDocs, limit, orderBy, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  where,
+} from "firebase/firestore";
 import { db_firestore } from "../../../Hooks/config";
 import { query } from "firebase/database";
 
@@ -95,12 +103,12 @@ export default function MachineOverview() {
   }, []);
 
   useEffect(() => {
-    let activeMachines = formingMachine?.filter(
-      (machine) => machine?.active
-    )?.length;
-    let idleMachines = formingMachine?.filter(
-      (machine) => !machine?.active
-    )?.length;
+    let activeMachines = formingMachine
+      ?.slice(0, 16)
+      ?.filter((machine) => machine?.active)?.length;
+    let idleMachines = formingMachine
+      ?.slice(0, 16)
+      ?.filter((machine) => !machine?.active)?.length;
 
     setActiveMachine(activeMachines);
     setInActiveMachine(idleMachines);

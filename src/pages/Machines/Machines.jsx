@@ -115,7 +115,7 @@ export default function Machines() {
         dataAvailable ? (
           <>
             <div className="grid grid-cols-4 gap-2">
-              {formingMachine
+              {formingMachine?.slice(0, 16)
                 ?.filter((machine) =>
                   portion === "all"
                     ? machine
