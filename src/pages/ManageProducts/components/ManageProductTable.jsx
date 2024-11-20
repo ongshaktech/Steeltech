@@ -3,7 +3,7 @@ import ProductTable from "./ProductTable";
 import { GetFirestoreData, useFirestore } from "../../../Hooks/firebaseFuncs";
 import ProductForm from "./ProductForm";
 import Modal from "../../../shared/Modal";
-
+import ShiftForm from "./ShiftForm";
 
 export default function ManageProductTable({
   setshowProductModal,
@@ -67,6 +67,15 @@ export default function ManageProductTable({
         >
           <ProductForm
             setFormData={setFormData}
+            setshowProductModal={setshowProductModal}
+          />
+        </Modal>
+      )}
+
+      {showShiftModal && (
+        <Modal open={showShiftModal} control={() => setshowShiftModal(false)}>
+          <ShiftForm
+            setShiftData={setShiftData}
             setshowProductModal={setshowProductModal}
           />
         </Modal>
