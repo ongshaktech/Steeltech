@@ -65,7 +65,7 @@ export default function Machine(props) {
       }`}
     >
       <div className="flex gap-4 justify-between h-full ">
-        <div className="w-full flex flex-col gap-2 justify-between p-3">
+        <div className="w-full flex flex-col gap-2 justify-between p-3 items-start">
           <h2 className="text-2xl font-semibold">FM {props.machineNo}</h2>
           <button className="flex gap-2 items-center bg-black text-white px-4 py-2 rounded-md">
             <div
