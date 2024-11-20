@@ -62,10 +62,17 @@ export default function Sidebar() {
           </div>
         </NavLink>
 
-        <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-          <img src={Users} alt="" />
-          <p className="">Manage Users</p>
-        </div>
+        <NavLink
+          to="/manage/users"
+          className={({ isActive }) =>
+            isActive ? "bg-primary rounded-md" : ""
+          }
+        >
+          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+            <img src={Users} alt="" />
+            <p className="">Manage Users</p>
+          </div>
+        </NavLink>
         <NavLink
           to="/incharge"
           className={({ isActive }) =>

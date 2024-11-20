@@ -15,6 +15,7 @@ import ManageProducts from "../pages/ManageProducts/ManageProducts";
 import Incharge from "../pages/Incharge/Incharge";
 import AdminMachineDetails from "../pages/Admin/AdminMachineDetails";
 import { ProtectedRoute } from "../Authentication/ProtectedRoute";
+import ManageUsers from "../pages/ManageUsers/ManageUsers";
 
 export const routes = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const routes = createBrowserRouter([
       {
         path: "/manage/products",
         element: <ManageProducts />,
+      },
+      {
+        path: "/manage/users",
+        element: <ManageUsers />,
       },
       {
         path: "/incharge",
