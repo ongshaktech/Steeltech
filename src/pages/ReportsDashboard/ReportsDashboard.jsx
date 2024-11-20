@@ -16,43 +16,43 @@ export default function ReportsDashboard() {
         <Link to="/reports/realtime-reports">
           <div className="rounded-lg shadow-xl cursor-pointer px-4 py-8 flex justify-center items-center flex-col gap-4 ">
             {/* <div className="rounded-lg shadow-[10px_15px_60px_15px_rgba(0,0,0,0.2)] px-4 py-8 flex justify-center items-center flex-col gap-4 "> */}
-            <img src={realtime_reports} alt="" className="w-[100px] h-auto" />
+            <img src={realtime_reports} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Realtime Report </p>
           </div>
         </Link>
         <Link to="/reports/daily-reports">
           <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-            <img src={daily_report} alt="" className="w-[60px] h-auto" />
+            <img src={daily_report} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Daily Report </p>
           </div>
         </Link>
         <Link to="/reports/weekly-reports">
           <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-            <img src={Weekly_Report} alt="" className="w-[100px] h-auto" />
+            <img src={Weekly_Report} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Weekly Report </p>
           </div>
         </Link>
         <Link to="/reports/monthly-reports">
           <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-            <img src={Monthly_Report} alt="" className="w-[100px] h-auto" />
+            <img src={Monthly_Report} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Monthly Report </p>
           </div>
         </Link>
         <Link to="/reports/quarterly-reports">
           <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-            <img src={Quarterly_Report} alt="" className="w-[100px] h-auto" />
+            <img src={Quarterly_Report} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Quarterly Report </p>
           </div>
         </Link>
         <Link to="/reports/yearly-reports">
           <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-            <img src={Yearly_Report} alt="" className="w-[100px] h-auto" />
+            <img src={Yearly_Report} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Yearly Report </p>
           </div>
         </Link>
         <Link to="/reports/machine-efficiency">
           <div className="rounded-lg shadow-xl px-4 py-8 flex justify-center items-center flex-col gap-4 ">
-            <img src={Machine_Efficiency} alt="" className="w-[100px] h-auto" />
+            <img src={Machine_Efficiency} alt="" className="h-[100px] w-auto" />
             <p className="text-2xl">Machine Efficiency </p>
           </div>
         </Link>

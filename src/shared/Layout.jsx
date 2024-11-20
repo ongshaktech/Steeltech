@@ -24,7 +24,7 @@ export default function Layout() {
     // Loading Wheel
     if (isUser === "unknown")
       setAuthview(
-        <div className="loadingSpinner">
+        <div className="min-h-screen flex justify-center items-center">
           <Triangle
             height="80"
             width="80"

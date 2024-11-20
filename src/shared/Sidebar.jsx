@@ -4,6 +4,10 @@ import Graph from "../assets/images/Graph.svg";
 // import Report from "../assets/images/Report.svg";
 import Users from "../assets/images/Users.svg";
 import { NavLink } from "react-router-dom";
+import { RiDashboardFill } from "react-icons/ri";
+import { TbReportSearch, TbSettingsCheck } from "react-icons/tb";
+import { CiSettings } from "react-icons/ci";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 export default function Sidebar() {
   return (
@@ -20,7 +24,8 @@ export default function Sidebar() {
           }
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Forming_Machine} alt="" />
+            {/* <img src={Forming_Machine} alt="" /> */}
+            <RiDashboardFill className="w-6 h-6" />
             <p className="">Overview</p>
           </div>
         </NavLink>
@@ -46,7 +51,8 @@ export default function Sidebar() {
           }
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Users} alt="" />
+            {/* <img src={Users} alt="" /> */}
+            <TbReportSearch className="w-6 h-6" />
             <p className="">Reports</p>
           </div>
         </NavLink>
@@ -80,7 +86,8 @@ export default function Sidebar() {
           }
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Users} alt="" />
+            {/* <img src={Users} alt="" /> */}
+            <TbSettingsCheck className="w-6 h-6" />
             <p className="">Incharge Section</p>
           </div>
         </NavLink>
@@ -91,7 +98,8 @@ export default function Sidebar() {
           }
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Users} alt="" />
+            {/* <img src={Users} alt="" /> */}
+            <CiSettings className="w-6 h-6" />
             <p className="">Tare & Coil Changing </p>
           </div>
         </NavLink>
@@ -102,7 +110,8 @@ export default function Sidebar() {
           }
         >
           <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Users} alt="" />
+            {/* <img src={Users} alt="" /> */}
+            <MdOutlineAdminPanelSettings className="w-6 h-6" />
             <p className="">Admin</p>
           </div>
         </NavLink>
