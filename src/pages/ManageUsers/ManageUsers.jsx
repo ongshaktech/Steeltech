@@ -7,5 +7,5 @@ export default function ManageUsers() {
   return <div>
     <ManageUsersHeading setshowUserModal={setshowUserModal}  />
     <ManageUserDetails  showUserModal={showUserModal} setshowUserModal={setshowUserModal} />
-  </div>;
+  </div>
 }
