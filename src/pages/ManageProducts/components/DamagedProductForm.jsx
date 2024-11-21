@@ -16,12 +16,14 @@ export default function DamagedProductForm({
     product_type: "N/A",
     product_dimensions: "N/A",
     shift: "",
+    Weight: "",
   });
 
   let machine_no = useRef("");
   let damage_count = useRef("");
   let shift = useRef("");
   let [damagedCategory, setDamagedCategory] = useState("");
+  let [weight, setWeight] = useState("");
 
   // get latest product info
   const selectMachine = (number) => {
@@ -60,6 +62,7 @@ export default function DamagedProductForm({
       thickness: lastestProduct.thickness,
       unix_time: Math.floor(Date.now() / 1000),
       damagedCategory,
+      weight
     });
     setshowProductModal(false);
     setConfirm(false);
@@ -221,6 +224,18 @@ export default function DamagedProductForm({
           required
           placeholder="Damaged Product Count"
           className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
+        />
+      </label>
+      <label className="flex gap-6 items-center">
+        <p className="w-[180px]">Weight*</p>
+        <input
+          type="text"
+          min="1"
+          required
+          placeholder="Damaged Product Count"
+          className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
         />
       </label>
 
