@@ -114,7 +114,6 @@ export default function MachineOverview() {
     setInActiveMachine(idleMachines);
   }, [formingMachine]);
 
-  console.log("formingMachine", formingMachine);
   return (
     <div className="py-10 flex gap-10 items-center">
       <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] w-full p-4 rounded-lg flex flex-col gap-6">

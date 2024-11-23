@@ -100,7 +100,6 @@ export default function ListOfIdleMachine() {
       });
     });
   }, []);
-  console.log("formingMachine", formingMachine);
 
   return (
     <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg">

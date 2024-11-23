@@ -56,8 +56,6 @@ export default function RealtimeMachineData() {
     });
   };
 
-  console.log("ReportData", ReportData);
-
   return (
     <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg">
       <h2 className="text-3xl">Real-Time Machine Data</h2>

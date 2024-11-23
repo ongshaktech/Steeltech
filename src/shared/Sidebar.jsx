@@ -79,10 +79,28 @@ export default function Sidebar() {
             <p className="">Forming Machine</p>
           </div>
         </NavLink>
-        {/* <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-          <img src={Graph} alt="" />
-          <p className="">Graphs & Charts</p>
-        </div> */}
+        <NavLink
+          to="/graph-charts"
+          className={({ isActive }) =>
+            isActive ? "bg-primary rounded-md block text-white" : "hidden"
+          }
+        >
+          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+            <img src={Graph} alt="" />
+            <p className="">Graphs & Charts</p>
+          </div>
+        </NavLink>
+        <NavLink
+          to="/graph-charts"
+          className={({ isActive }) =>
+            isActive ? "bg-primary rounded-md hidden" : "block"
+          }
+        >
+          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
+            <img src={Graph} alt="" />
+            <p className="">Graphs & Charts</p>
+          </div>
+        </NavLink>
         <NavLink
           to="/reports/dashboard"
           className={({ isActive }) =>

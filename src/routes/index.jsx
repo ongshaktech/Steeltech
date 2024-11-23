@@ -21,6 +21,7 @@ import AddProduct from "../pages/ManageProducts/AddProduct";
 import AddShift from "../pages/ManageProducts/AddShift";
 import AddDamangedProduct from "../pages/ManageProducts/AddDamagedProduct";
 import AllMachine from "../pages/AllMachine/AllMachine";
+import GraphAndChart from "../pages/GraphAndChart/GraphAndChart";
 
 export const routes = createBrowserRouter([
   {
@@ -136,6 +137,14 @@ export const routes = createBrowserRouter([
           <ProtectedRoute permission="adminSection">
             <AdminMachineDetails />
           </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/graph-charts",
+        element: (
+          // <ProtectedRoute permission="adminSection">
+            <GraphAndChart />
+          // </ProtectedRoute>
         ),
       },
     ],
