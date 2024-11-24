@@ -5,7 +5,7 @@ import CanvasJSReact from "@canvasjs/react-charts";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export class MachineEfficiency extends Component {
+export class ProductThicknessGraph extends Component {
   render() {
     let data = this.props.data;
 
@@ -13,7 +13,7 @@ export class MachineEfficiency extends Component {
     const options = {
       theme: "light2",
       animationEnabled: true,
-    //   exportEnabled: true,
+      //   exportEnabled: true,
       title: {
         text: "Production Details",
       },
@@ -35,7 +35,6 @@ export class MachineEfficiency extends Component {
           type: "spline",
           xValueFormatString: "MMM",
           yValueFormatString: "#,###.## KG",
-        //   name: data[0]?.name,
           name: "Weight",
           showInLegend: true,
           dataPoints: data?.map((item) => ({
@@ -47,7 +46,6 @@ export class MachineEfficiency extends Component {
           type: "spline",
           xValueFormatString: "MMM",
           yValueFormatString: "#,###.## PIPE",
-        //   name: data[1]?.name,
           name: "Pipes",
           showInLegend: true,
           dataPoints: data?.map((item) => ({
@@ -55,61 +53,7 @@ export class MachineEfficiency extends Component {
             y: item["Pipes"],
           })),
         },
-        {
-          type: "spline",
-          xValueFormatString: "MMM",
-          yValueFormatString: "#,###.## AVW",
-        //   name: data[2]?.name,
-          name: "AVR Pipe W",
-          showInLegend: true,
-          dataPoints: data?.map((item) => ({
-            label: item["name"],
-            y: Number(item["Average Pipe Weight"]),
-          })),
-        },
       ],
-  
- 
-    //   legend: {
-    //     dockInsidePlotArea: true,
-    //     horizontalAlign: "right",
-    //   },
-    //   data: [
-    //     {
-    //       type: "spline",
-    //       xValueFormatString: "M",
-    //       yValueFormatString: "#,###.## TW",
-    //       name: "F1",
-    //       showInLegend: true,
-    //       dataPoints: data?.map((item) => ({
-    //         x: item["name"],
-    //         y: item["Total weight"],
-    //       })),
-    //     },
-    //     {
-    //       type: "spline",
-    //       xValueFormatString: "M",
-    //       yValueFormatString: "#,###.## PIPE",
-    //       name: "F2",
-    //       showInLegend: true,
-    //       dataPoints: data?.map((item) => ({
-    //         x: item["name"],
-    //         y: item["Pipes"],
-    //       })),
-    //     },
-    //     {
-    //       type: "spline",
-    //       xValueFormatString: "M",
-    //       yValueFormatString: "#,###.## AVW",
-    //       name: "F3",
-    //       showInLegend: true,
-    //       dataPoints: data?.map((item) => ({
-    //         x: item["name"],
-    //         y: Number(item["Average Pipe Weight"]),
-    //       })),
-    //     },
-       
-    //   ],
     };
 
     console.log("options", options);
@@ -124,4 +68,4 @@ export class MachineEfficiency extends Component {
     );
   }
 }
-export default MachineEfficiency;
+export default ProductThicknessGraph;

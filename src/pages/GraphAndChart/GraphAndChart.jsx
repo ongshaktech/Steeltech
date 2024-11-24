@@ -6,7 +6,7 @@ export default function GraphAndChart() {
   return (
     <div>
         <ProductionDetails />
-        {/* <ProducttypeAndThikness /> */}
+        <ProducttypeAndThikness />
     </div>
   )
 }

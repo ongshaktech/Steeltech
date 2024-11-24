@@ -251,7 +251,7 @@ export default function ProductionDetails() {
   return (
     <div className="mt-10">
       <div className="flex gap-6 items-center mb-10">
-        <h2 className="w-full text-3xl font-bold">Production Details of</h2>
+        <h2 className="min-w-[400px] text-3xl font-bold">Production Details of</h2>
 
         <input
           type="date"
