@@ -27,7 +27,7 @@ import { GiVendingMachine } from "react-icons/gi";
 export default function Sidebar() {
   let [showProductMenu, setShowProductMenu] = useState(false);
   return (
-    <div className="max-w-[240px] w-full min-h-screen border-r border-r-gray-500">
+    <div className="max-w-[240px] min-w-[240px] w-full min-h-screen border-r border-r-gray-500">
       <div className="w-full py-4 ">
         <img src={Steeltech_Logo} alt="" className="mx-auto" />
       </div>
