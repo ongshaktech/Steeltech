@@ -26,7 +26,7 @@ export class MachineEfficiency extends Component {
         suffix: "KG",
       },
       axisX: {
-        title: "Month", // Optional: set a title for the x-axis
+        title: "Machine", // Optional: set a title for the x-axis
         valueFormatString: "MMM", // Adjust to match your data format if applicable
         labelAngle: -45, // Optional: rotate labels for better visibility
       },

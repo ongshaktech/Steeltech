@@ -89,7 +89,7 @@ export class EfficiencyGraph extends Component {
 
     console.log("options", options);
     return (
-      <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg flex justify-center items-center">
+      <div className=" flex justify-center items-center">
         <CanvasJSChart
           options={options}
           /* onRef={ref => this.chart = ref} */

@@ -171,9 +171,9 @@ export default function MachineEfficiencyGraph() {
   }
 
   return (
-    <div className="my-10">
-      <div className="flex gap-4 items-center">
-        <h2 className="text-3xl font-bold">MachineEfficiencyGraph</h2>
+    <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg max-w-3xl mx-auto  my-10">
+        <h2 className="text-3xl font-bold mb-6">MachineEfficiencyGraph</h2>
+      <div className="flex gap-4 items-center mb-8">
 
         <input
           type="date"
@@ -183,7 +183,7 @@ export default function MachineEfficiencyGraph() {
         />
 
         <select
-          className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
+          className="w-full p-3 rounded-md border border-black outline-none focus:outline-none bg-black text-white"
           onChange={(e) => {
             setThickness(e.target.value);
           }}
