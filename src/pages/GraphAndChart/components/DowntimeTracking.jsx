@@ -15,8 +15,6 @@ export default function DowntimeTracking() {
   let [loading, setLoading] = useState(false);
   let [DataPeriod, setDataPeriod] = useState(new Date());
 
-  console.log("DataPeriod", DataPeriod, date)
-
   const [chartData, setChartData] = useState({
     series: [
       {
@@ -131,7 +129,6 @@ export default function DowntimeTracking() {
     endDate = Math.floor(endDate.getTime() / 1000);
 
     setLoading(true);
-    console.log(startDate, endDate);
 
     const ref = collection(db_firestore, "machineStatus");
 
@@ -147,7 +144,6 @@ export default function DowntimeTracking() {
 
       const snapShot = await getDocs(q);
       snapShot.forEach((doc) => {
-        console.log(doc.data(), "-------------------");
         queryResult.push(doc.data());
       });
       graphDataArr.push({
@@ -160,7 +156,6 @@ export default function DowntimeTracking() {
         setGraphData(graphDataArr);
         // setting machine no list to chart data
         // chartData.options.xaxis.categories = machineNumbers;
-        // console.log(chartData);
         setChartData({
           ...chartData,
           options: {
