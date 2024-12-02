@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 import { GetFirestoreData } from "../../../Hooks/firebaseFuncs";
-import ShiftbasedProductionPieChart from "./ShiftbasedProductionPieChart";
+// import ShiftbasedProductionPieChart from "./ShiftbasedProductionPieChart";
 
 export default function ShiftBasedProduction() {
   const collection_name = "machinesIndividual";
@@ -320,7 +320,7 @@ export default function ShiftBasedProduction() {
       >
         Show
       </button>
-      <ShiftbasedProductionPieChart data={pieChartData} />
+      {/* <ShiftbasedProductionPieChart data={pieChartData} /> */}
     </div>
   );
 }

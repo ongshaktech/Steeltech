@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 import { ProductThickness } from "../../../data/constants";
-import { EfficiencyGraph } from "./EfficiencyGraph";
+// import { EfficiencyGraph } from "./EfficiencyGraph";
 
 export default function MachineEfficiencyGraph() {
   const collection_name = "machinesIndividual";
@@ -204,7 +204,7 @@ export default function MachineEfficiencyGraph() {
         Set
       </button>
       </div>
-      <EfficiencyGraph data={machineDetails} />
+      {/* <EfficiencyGraph data={machineDetails} /> */}
     </div>
   );
 }

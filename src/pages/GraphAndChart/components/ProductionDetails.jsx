@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
-import MachineEfficiency from "../../Overview/components/MachineEfficiency";
+// import MachineEfficiency from "../../Overview/components/MachineEfficiency";
 
 export default function ProductionDetails() {
   const collection_name = "machinesIndividual";
@@ -315,7 +315,7 @@ export default function ProductionDetails() {
       </div>
 
       <h1 className="py-4 text-center">{status}</h1>
-      <MachineEfficiency data={graphData} />
+      {/* <MachineEfficiency data={graphData} /> */}
     </div>
   );
 }

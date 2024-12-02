@@ -8,11 +8,11 @@ import ShiftBasedProduction from './components/ShiftBasedProduction'
 export default function GraphAndChart() {
   return (
     <div>
-        <ProductionDetails />
+        {/* <ProductionDetails />
         <ProducttypeAndThikness />
         <ShiftBasedProduction />
         <MachineEfficiencyGraph />
-        <DowntimeTracking />
+        <DowntimeTracking /> */}
     </div>
   )
 }
