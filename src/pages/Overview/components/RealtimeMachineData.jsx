@@ -59,7 +59,7 @@ export default function RealtimeMachineData() {
   return (
     <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg">
       <h2 className="text-3xl">Real-Time Machine Data</h2>
-      <div className="grid grid-cols-6 items-center gap-6 bg-primary rounded-full p-4 text-white mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-6 items-center gap-6 bg-primary md:rounded-full p-4 text-white mt-6">
         <p>Machine Names</p>
         <p>Status</p>
         <p>Shift</p>
@@ -69,7 +69,7 @@ export default function RealtimeMachineData() {
       </div>
       {ReportData?.slice(0, 5)?.map((report) => (
         <div
-          className={`grid grid-cols-6 items-center gap-6  rounded-md p-2 text-black mt-6 ${
+          className={`grid  grid-cols-1 md:grid-cols-6 items-center gap-6  rounded-md p-2 text-black mt-6 border md:border-none ${
             report?.status == "new" ? "bg-green-100" : ""
           }`}
         >

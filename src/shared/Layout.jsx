@@ -42,7 +42,7 @@ export default function Layout() {
   return isUser !== "is_user" ? (
     <>{authview}</>
   ) : (
-    <div className="flex gap-6">
+    <div className="flex gap-6 flex-col md:flex-row">
       <Sidebar />
       <div className="container mx-auto w-full p-4">
         <Outlet />

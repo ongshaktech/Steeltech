@@ -115,7 +115,7 @@ export default function MachineOverview() {
   }, [formingMachine]);
 
   return (
-    <div className="py-10 flex gap-10 items-center">
+    <div className="py-10 flex flex-col md:flex-row gap-10 items-center">
       <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] w-full p-4 rounded-lg flex flex-col gap-6">
         <div className="flex gap-4 justify-between items-center">
           <p>Active Machines</p>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MachinesHeading({ setPortion, portion }) {
   return (
-    <div className="flex gap-10 items-center justify-between pb-6">
+    <div className="flex gap-10 flex-col md:flex-row items-center justify-between pb-6">
       <h2 className="text-4xl font-sans font-medium">Forming Machine</h2>
       <div className="flex gap-4 items-center">
         <div className="flex gap-2 items-center">

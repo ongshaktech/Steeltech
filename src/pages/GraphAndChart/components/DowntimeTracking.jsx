@@ -1,8 +1,8 @@
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
-import DowntimeGraph from "./DowntimeGraph";
-import DowntimeCustomGraph from "./DowntimeCustomGraph";
+// import DowntimeGraph from "./DowntimeGraph";
+// import DowntimeCustomGraph from "./DowntimeCustomGraph";
 import split_time from "./GraphTime";
 import DowntimeDesign from "./DowntimeDesign";
 
@@ -230,7 +230,7 @@ export default function DowntimeTracking() {
       ) : (
         <div className=" max-h-[500px] overflow-y-scroll">
 
-        <DowntimeCustomGraph graphData={graphData} thresholdTime={900} />
+        {/* <DowntimeCustomGraph graphData={graphData} thresholdTime={900} /> */}
         </div>
       )}
 
