@@ -58,7 +58,7 @@ export default function ManageProductTable({
   }, [damagedProductData]);
 
   return (
-    <div>
+    <div className="">
       <ProductTable productData={TableData} />
 
       {showProductModal && (
