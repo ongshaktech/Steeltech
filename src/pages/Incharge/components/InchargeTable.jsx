@@ -86,62 +86,64 @@ export default function InchargeTable() {
   // }, [damagedProductData]);
 
   return (
-    <table className="w-full">
-      <thead className="bg-primary text-white font-light rounded-lg">
-        <tr className=" rounded-tl-lg">
-          <th className="border border-black p-2">Sl No.</th>
-          <th className="border border-black p-2">Mazchine No.</th>
-          <th className="border border-black p-2">Thickness</th>
-          <th className="border border-black p-2">Dimension</th>
-          <th className="border border-black p-2">Product Type</th>
-          <th className="border border-black p-2">Added On</th>
-          <th className="border border-black p-2">Action</th>
-        </tr>
-      </thead>
+    <div class="relative overflow-x-auto">
+      <table className="w-full">
+        <thead className="bg-primary text-white font-light rounded-lg">
+          <tr className=" rounded-tl-lg">
+            <th className="border border-black p-2">Sl No.</th>
+            <th className="border border-black p-2">Machine No.</th>
+            <th className="border border-black p-2">Thickness</th>
+            <th className="border border-black p-2">Dimension</th>
+            <th className="border border-black p-2">Product Type</th>
+            <th className="border border-black p-2">Added On</th>
+            <th className="border border-black p-2">Action</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {/* <tr> */}
-        {TableData?.filter((item) => item?.status == "pending")?.map(
-          (item, id) => (
-            <tr>
-              <td class="border border-black p-4">{id + 1}</td>
-              <td class="border border-black p-4">{item?.machine_no}</td>
-              <td class="border border-black p-4">{item?.thickness}</td>
-              <td class="border border-black p-4">
-                {item?.product_dimensions}
-              </td>
-              <td class="border border-black p-4">{item?.product_type}</td>
-              <td class="border border-black p-4">
-                {item?.creatingDate ? (
-                  formatDateTime(item.creatingDate.toDate())
-                ) : (
-                  <p>No date</p>
-                )}
-              </td>
-              <td class="border border-black p-4">
-                <div className="max-w-[140px] flex gap-2 items-center">
-                  <button
-                    className="btn-primary bg-red-500"
-                    onClick={() => handleDecline(item)}
-                  >
-                    Decline
-                  </button>
-                  <button
-                    className="btn-primary bg-green-500"
-                    onClick={() => handleApprove(item)}
-                  >
-                    Approve
-                  </button>
-                </div>
-              </td>
-            </tr>
-          )
-        )}
-        {/* <td className="border border-gray-500 text-center py-4 " colSpan="13">
+        <tbody>
+          {/* <tr> */}
+          {TableData?.filter((item) => item?.status == "pending")?.map(
+            (item, id) => (
+              <tr>
+                <td class="border border-black p-4">{id + 1}</td>
+                <td class="border border-black p-4">{item?.machine_no}</td>
+                <td class="border border-black p-4">{item?.thickness}</td>
+                <td class="border border-black p-4">
+                  {item?.product_dimensions}
+                </td>
+                <td class="border border-black p-4">{item?.product_type}</td>
+                <td class="border border-black p-4">
+                  {item?.creatingDate ? (
+                    formatDateTime(item.creatingDate.toDate())
+                  ) : (
+                    <p>No date</p>
+                  )}
+                </td>
+                <td class="border border-black p-4">
+                  <div className="max-w-[140px] flex flex-col md:flex-row gap-2 items-center">
+                    <button
+                      className="btn-primary px-4 py-1 bg-red-500"
+                      onClick={() => handleDecline(item)}
+                    >
+                      Decline
+                    </button>
+                    <button
+                      className="btn-primary px-4 py-1 bg-green-500"
+                      onClick={() => handleApprove(item)}
+                    >
+                      Approve
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            )
+          )}
+          {/* <td className="border border-gray-500 text-center py-4 " colSpan="13">
           Plase Select a Date Range
         </td> */}
-        {/* </tr> */}
-      </tbody>
-    </table>
+          {/* </tr> */}
+        </tbody>
+      </table>
+    </div>
   );
 }

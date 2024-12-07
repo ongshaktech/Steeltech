@@ -7,7 +7,7 @@ export default function CoilChange({
   handleWeightChange,
   handleUpdate,
 }) {
-  return (
+  return (  
     <div className="border border-gray-600 rounded-t-lg">
       <div className="border flex gap-4 items-center justify-between p-4 bg-primary text-white rounded-t-lg">
         <p className="w-full">ID</p>

@@ -152,7 +152,7 @@ export default function DamagedProductForm({
         {lastestProduct.product_type}
       </label>
 
-      <div className="flex gap-4 items-center">
+      <div className="flex flex-col md:flex-row gap-4 items-center">
         <p
           className={`${
             damagedCategory == "damaged_product"

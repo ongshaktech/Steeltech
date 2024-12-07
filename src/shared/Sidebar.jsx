@@ -26,6 +26,7 @@ import { GiVendingMachine } from "react-icons/gi";
 
 export default function Sidebar() {
   let [showProductMenu, setShowProductMenu] = useState(false);
+  let [showReportMenu, setShowResportMenu] = useState(false);
   return (
     <div className="w-full md:max-w-[240px] md:min-w-[240px] w-full md:min-h-screen border-r border-r-gray-500">
       <div className="w-full py-4 ">
@@ -101,30 +102,76 @@ export default function Sidebar() {
             <p className="">Graphs & Charts</p>
           </div>
         </NavLink> */}
-        <NavLink
-          to="/reports/dashboard"
-          className={({ isActive }) =>
-            isActive ? "bg-primary rounded-md hidden" : "block"
-          }
+
+        <div
+          className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer"
+          onClick={() => setShowResportMenu(!showReportMenu)}
         >
-          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Report_Black} alt="" />
-            {/* <TbReportSearch className="w-6 h-6" /> */}
-            <p className="">Reports</p>
-          </div>
-        </NavLink>
-        <NavLink
-          to="/reports/dashboard"
-          className={({ isActive }) =>
-            isActive ? "bg-primary rounded-md block text-white" : "hidden"
-          }
+          <img src={Report_Black} alt="" />
+          <p className="">Reports</p>
+          {showReportMenu ? <FaAngleUp /> : <FaAngleDown />}
+        </div>
+
+        {/* <div
+          className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer"
+          onClick={() => setShowResportMenu(!showReportMenu)}
         >
-          <div className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer">
-            <img src={Report_White} alt="" />
-            {/* <TbReportSearch className="w-6 h-6" /> */}
-            <p className="">Reports</p>
+          <img src={Report_White} alt="" />
+          <p className="">Reports</p>
+        </div> */}
+
+        {showReportMenu && (
+          <div className="flex flex-col gap-3 pl-8">
+            <NavLink
+              to="/reports/realtime-reports"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Realtime Report</p>
+            </NavLink>
+            <NavLink
+              to="/reports/daily-reports"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Daily Report</p>
+            </NavLink>
+            <NavLink
+              to="/reports/weekly-reports"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Weekly Report</p>
+            </NavLink>
+            <NavLink
+              to="/reports/monthly-reports"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Monthly Report</p>
+            </NavLink>
+            <NavLink
+              to="/reports/quarterly-reports"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Quarterly Report</p>
+            </NavLink>
+            <NavLink
+              to="/reports/machine-efficiency"
+              className={({ isActive }) =>
+                isActive ? "bg-primary rounded-md" : ""
+              }
+            >
+              <p className="p-2 ">Machine Efficiency</p>
+            </NavLink>
           </div>
-        </NavLink>
+        )}
         <div
           className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer"
           onClick={() => setShowProductMenu(!showProductMenu)}

@@ -195,9 +195,8 @@ export default function WeeklyReport() {
   return (
     <div>
       <h2 className="text-2xl font-bold py-8">Weekly Report </h2>
-
-      <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
-        <div className="flex gap-4 items-center">
+      <div className="container mx-auto flex gap-4 flex-col md:flex-row justify-center items-center mb-10">
+        <div className="flex gap-4 flex-col md:flex-row items-center">
           <h2>Date</h2>
           <input
             type="number"
@@ -235,8 +234,8 @@ export default function WeeklyReport() {
      
       </div>
 
-      <div className="w-full">
-        <table id="table-to-xls" className="w-full">
+      <div className="w-full relative overflow-x-auto">
+        <table className="w-full">
           <thead className="bg-primary text-white font-light rounded-lg">
             <tr>
               <th className="border border-black p-2">Week</th>

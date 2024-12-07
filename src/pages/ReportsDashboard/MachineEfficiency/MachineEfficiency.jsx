@@ -163,7 +163,7 @@ export default function MachineEfficiency() {
     <div>
       <h2 className="text-2xl font-bold py-8">Machine Efficiency </h2>
 
-      <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
+      <div className="container mx-auto flex gap-4 flex-col md:flex-row justify-center items-center mb-10">
         <h2>From</h2>
         <input
           type="date"
@@ -200,8 +200,8 @@ export default function MachineEfficiency() {
         </button>
       </div>
 
-      <div className="w-full">
-        <table id="table-to-xls" className="w-full">
+      <div className="w-full relative overflow-x-auto">
+        <table className="w-full">
           <thead
             className="bg-primary text-white font-light rounded-lg"
             ref={tableHeaderRef}

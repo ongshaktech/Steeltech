@@ -228,8 +228,8 @@ export default function DailyReport() {
     <div>
       <h2 className="text-2xl font-bold py-8">Daily Report </h2>
 
-      <div className="container mx-auto flex gap-4 justify-center items-center mb-10">
-        <div className="flex gap-4 items-center">
+      <div className="container mx-auto flex gap-4 flex-col md:flex-row justify-center items-center mb-10">
+        <div className="flex gap-4 flex-col md:flex-row items-center">
           <h2>From</h2>
           <input
             type="date"
@@ -264,13 +264,12 @@ export default function DailyReport() {
         <button className="px-6 py-2 rounded-full bg-primary text-white flex gap-3 items-center">
           Download Excel Report <FaFileDownload />
         </button>
-      
       </div>
 
-      <div className="w-full">
-        <table id="table-to-xls" className="w-full">
+      <div className="w-full relative overflow-x-auto">
+        <table className="w-full">
           <thead className="bg-primary text-white font-light rounded-lg">
-            <tr>
+            <tr className=" rounded-tl-lg">
               <th rowSpan="2" className="border border-black">
                 Date
               </th>
@@ -319,7 +318,6 @@ export default function DailyReport() {
               <th className="border border-black">Weight</th>
             </tr>
           </thead>
-     
 
           <tbody ref={tableRef}>
             <tr>
