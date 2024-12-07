@@ -14,7 +14,10 @@ export default function Layout() {
     // Get encrypted Login Credentials from Cookies and Validate with FireStore
     AuthLogin("users", GetCookie("email"), GetCookie("pswd")).then(
       (response) => {
-        if (response[0]) setUser("is_user");
+        if (response[0]) {
+          setUser("is_user");
+          console.log("response[0]", response)
+        }
         else setUser("not_user");
       }
     );
