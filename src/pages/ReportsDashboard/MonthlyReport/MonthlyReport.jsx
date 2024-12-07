@@ -171,13 +171,13 @@ export default function MonthlyReport() {
   ) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<tr>
-          <td class="border border-black p-4">${date}</td>
-          <td class="border border-black p-4">${machine_no}</td>
-          <td class="border border-black p-4">${product_type}</td>
-          <td class="border border-black p-4">${damaged}</td>
-          <td class="border border-black p-4">${tp}</td>
-          <td class="border border-black p-4">${net}</td>
-          <td class="border border-black p-4">${tw}</td>
+          <td class="border border-black p-4 text-center">${date}</td>
+          <td class="border border-black p-4 text-center">${machine_no}</td>
+          <td class="border border-black p-4 text-center">${product_type}</td>
+          <td class="border border-black p-4 text-center">${damaged}</td>
+          <td class="border border-black p-4 text-center">${tp}</td>
+          <td class="border border-black p-4 text-center">${net}</td>
+          <td class="border border-black p-4 text-center">${tw}</td>
           </tr>`;
     let ele = document.getElementById("reportStatus");
     if (ele) ele.remove();

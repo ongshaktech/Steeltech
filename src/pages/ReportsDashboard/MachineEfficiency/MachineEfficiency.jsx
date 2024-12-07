@@ -149,7 +149,7 @@ export default function MachineEfficiency() {
 
     const tr = document.createElement("tr");
     tr.innerHTML = `<tr class="border border-black p-2">
-          <td class="border border-black p-2"><b>FM ${machine_no}</b></td>
+          <td class="border border-black p-2 text-center"><b>FM ${machine_no}</b></td>
           ${times}
           </tr>`;
 

@@ -27,28 +27,28 @@ export default function RealTimeReportTable({ ReportData, startIndex }) {
                   item?.status == "new" ? "bg-green-100" : ""
                 }`}
               >
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {index + 1 + parseInt(startIndex)}
                 </td>
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {item?.machine_no}
                 </td>
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {item?.product_type}
                 </td>
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {item?.thickness}
                 </td>
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {item?.count}{" "}
                 </td>
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {item?.weight} KG
                 </td>
-                <td class="border border-black p-4">
+                <td class="border border-black p-4 text-center">
                   {item?.shift}
                 </td>
-                <td className="border border-black p-4">
+                <td className="border border-black p-4 text-center">
                   {item["date"]}{" "}
                   {`${item["time"].toString().slice(0, 2)}:${item["time"]
                     .toString()

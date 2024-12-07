@@ -197,22 +197,22 @@ export default function DailyReport() {
     // tr.className = ' border border-black p-2 ';
     tr.innerHTML = `
       <tr>
-        <td class="border border-black p-4">${date}</td>
-        <td class="border border-black p-4">${machine_no}</td>
-        <td class="border border-black p-4">${product_type}</td>
+        <td class="border border-black p-4 text-center">${date}</td>
+        <td class="border border-black p-4 text-center">${machine_no}</td>
+        <td class="border border-black p-4 text-center">${product_type}</td>
         
-        <td class="border border-black p-4">${m_count}</td>
-        <td class="border border-black p-4">${m_damaged}</td>
-        <td class="border border-black p-4">${m_net}</td>
-        <td class="border border-black p-4">${m_weight}</td>
+        <td class="border border-black p-4 text-center">${m_count}</td>
+        <td class="border border-black p-4 text-center">${m_damaged}</td>
+        <td class="border border-black p-4 text-center">${m_net}</td>
+        <td class="border border-black p-4 text-center">${m_weight}</td>
         
-        <td class="border border-black p-4">${n_count}</td>
-        <td class="border border-black p-4">${n_damaged}</td>
-        <td class="border border-black p-4">${n_net}</td>
-        <td class="border border-black p-4">${n_weight}</td>
+        <td class="border border-black p-4 text-center">${n_count}</td>
+        <td class="border border-black p-4 text-center">${n_damaged}</td>
+        <td class="border border-black p-4 text-center">${n_net}</td>
+        <td class="border border-black p-4 text-center">${n_weight}</td>
         
-        <td class="border border-black p-4">${tp}</td>
-        <td class="border border-black p-4">${tw}</td>
+        <td class="border border-black p-4 text-center">${tp}</td>
+        <td class="border border-black p-4 text-center">${tw}</td>
       </tr>
     `;
 

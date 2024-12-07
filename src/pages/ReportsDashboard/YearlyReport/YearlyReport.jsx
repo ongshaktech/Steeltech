@@ -197,22 +197,22 @@ export default function YearlyReport() {
   ) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<tr>
-          <td class="border border-black p-2">${date}</td>
-          <td class="border border-black p-2">${machine_no}</td>
-          <td class="border border-black p-2">${product_type}</td>
+          <td class="border border-black p-2 text-center">${date}</td>
+          <td class="border border-black p-2 text-center">${machine_no}</td>
+          <td class="border border-black p-2 text-center">${product_type}</td>
 
-          <td class="border border-black p-2">${m_count}</td>
-          <td class="border border-black p-2">${m_damaged}</td>
-          <td class="border border-black p-2">${m_net}</td>
-          <td class="border border-black p-2">${m_weight}</td>
+          <td class="border border-black p-2 text-center">${m_count}</td>
+          <td class="border border-black p-2 text-center">${m_damaged}</td>
+          <td class="border border-black p-2 text-center">${m_net}</td>
+          <td class="border border-black p-2 text-center">${m_weight}</td>
 
-          <td class="border border-black p-2">${n_count}</td>
-          <td class="border border-black p-2">${n_damaged}</td>
-          <td class="border border-black p-2">${n_net}</td>
-          <td class="border border-black p-2">${n_weight}</td>
+          <td class="border border-black p-2 text-center">${n_count}</td>
+          <td class="border border-black p-2 text-center">${n_damaged}</td>
+          <td class="border border-black p-2 text-center">${n_net}</td>
+          <td class="border border-black p-2 text-center">${n_weight}</td>
 
-          <td class="border border-black p-2">${tp}</td>
-          <td class="border border-black p-2">${tw}</td>
+          <td class="border border-black p-2 text-center">${tp}</td>
+          <td class="border border-black p-2 text-center">${tw}</td>
           </tr>`;
     let ele = document.getElementById("reportStatus");
     if (ele !== null) {
