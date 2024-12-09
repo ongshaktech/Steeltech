@@ -4,6 +4,7 @@ import Overview_Black from "../assets/images/Overview_Black.svg";
 import Overview_White from "../assets/images/Overview_White.svg";
 import Report_Black from "../assets/images/Report_Black.svg";
 import Report_White from "../assets/images/Report_White.svg";
+import manage_products from "../assets/images/manage_products.svg";
 import Forming_Machine_white from "../assets/images/Forming_Machine_white.svg";
 import Graph from "../assets/images/Graph.svg";
 // import Report from "../assets/images/Report.svg";
@@ -176,7 +177,7 @@ export default function Sidebar() {
           className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer"
           onClick={() => setShowProductMenu(!showProductMenu)}
         >
-          <img src={Forming_Machine} alt="" />
+          <img src={manage_products} alt="" />
           <p className="">Manage Products</p>
           {showProductMenu ? <FaAngleUp /> : <FaAngleDown />}
         </div>

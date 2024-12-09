@@ -16,7 +16,7 @@ export default function MachineEfficiency() {
 
   useEffect(() => {
     dateEndRef.current.valueAsDate = new Date();
-    let procductThicknessDiv = "<th></th>";
+    let procductThicknessDiv = `<th class="border border-black p-2">Machine Name</th>`;
     let MachineNo = new Set([]);
 
     // Get Machine Number List
@@ -36,7 +36,8 @@ export default function MachineEfficiency() {
         procductThicknessDiv += `<th class="border border-black p-2">${thickness}</th>`;
       });
 
-      tableHeaderRef.current.innerHTML = `<tr>${procductThicknessDiv}<tr>`;
+      tableHeaderRef.current.innerHTML = `<tr>
+      ${procductThicknessDiv}<tr>`;
     });
   }, []);
 
