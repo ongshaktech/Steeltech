@@ -139,14 +139,14 @@ export const routes = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      // {
-      //   path: "/graph-charts",
-      //   element: (
-      //     // <ProtectedRoute permission="adminSection">
-      //       <GraphAndChart />
-      //     // </ProtectedRoute>
-      //   ),
-      // },
+      {
+        path: "/graph-charts",
+        element: (
+          // <ProtectedRoute permission="adminSection">
+            <GraphAndChart />
+          // </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

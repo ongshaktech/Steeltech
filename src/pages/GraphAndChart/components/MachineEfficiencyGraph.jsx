@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 import { ProductThickness } from "../../../data/constants";
-// import { EfficiencyGraph } from "./EfficiencyGraph";
+import { EfficiencyGraph } from "./EfficiencyGraph";
 
 export default function MachineEfficiencyGraph() {
   const collection_name = "machinesIndividual";
@@ -171,10 +171,9 @@ export default function MachineEfficiencyGraph() {
   }
 
   return (
-    <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg max-w-3xl mx-auto  my-10">
-        <h2 className="text-3xl font-bold mb-6">MachineEfficiencyGraph</h2>
+    <div className="bg-white shadow-[5px_5px_20px_1px_rgba(0,0,0,0.2)] p-8 rounded-lg max-w-3xl mx-auto  my-20">
+      <h2 className="text-3xl font-bold mb-6">MachineEfficiencyGraph</h2>
       <div className="flex gap-4 items-center mb-8">
-
         <input
           type="date"
           className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
@@ -197,14 +196,14 @@ export default function MachineEfficiencyGraph() {
             </option>
           ))}
         </select>
-      <button
-        className="bg-primary p-2 rounded-lg text-white"
-        onClick={() => generateReport()}
-      >
-        Set
-      </button>
+        <button
+          className="bg-primary p-2 rounded-lg text-white"
+          onClick={() => generateReport()}
+        >
+          Set
+        </button>
       </div>
-      {/* <EfficiencyGraph data={machineDetails} /> */}
+      <EfficiencyGraph data={machineDetails} />
     </div>
   );
 }

@@ -81,7 +81,7 @@ export default function Sidebar() {
             <p className="">Forming Machine</p>
           </div>
         </NavLink>
-        {/* <NavLink
+        <NavLink
           to="/graph-charts"
           className={({ isActive }) =>
             isActive ? "bg-primary rounded-md block text-white" : "hidden"
@@ -102,7 +102,7 @@ export default function Sidebar() {
             <img src={Graph} alt="" />
             <p className="">Graphs & Charts</p>
           </div>
-        </NavLink> */}
+        </NavLink>
 
         <div
           className="flex gap-3 items-center px-2 py-2 rounded-md hover:bg-primary cursor-pointer"

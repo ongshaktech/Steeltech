@@ -2,7 +2,7 @@ import { collection, doc, getDoc, getDocs, query, where } from "firebase/firesto
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 import { ProductThickness, ProductTypes } from "../../../data/constants";
-// import { ProductThicknessGraph } from "./ProductThiknessGraph";
+import { ProductThicknessGraph } from "./ProductThiknessGraph";
 
 export default function ProducttypeAndThikness() {
   const collection_name = "machinesIndividual";
@@ -240,7 +240,7 @@ export default function ProducttypeAndThikness() {
       </div>
 
       <h1 className="py-4 text-center">{status}</h1>
-      {/* <ProductThicknessGraph data={graphData} /> */}
+      <ProductThicknessGraph data={graphData} />
     </div>
   );
 }

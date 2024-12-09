@@ -9,12 +9,14 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 import { GetFirestoreData } from "../../../Hooks/firebaseFuncs";
-// import ShiftbasedProductionPieChart from "./ShiftbasedProductionPieChart";
+import ShiftbasedProductionPieChart from "./ShiftbasedProductionPieChart";
 
 export default function ShiftBasedProduction() {
   const collection_name = "machinesIndividual";
   let [dateStart, setDateStart] = useState(new Date());
   let [dateEnd, setDateEnd] = useState(new Date());
+  let [date, setDate] = useState(new Date());
+  let [selectedShift, setSelectedShift] = useState("Night");
   let tableBodyRef = useRef(null);
   let tableHeaderRef = useRef(null);
   let [MachineNoList, setMachineNoList] = useState(new Set([]));
@@ -54,7 +56,7 @@ export default function ShiftBasedProduction() {
   }, []);
 
   const generateReport = () => {
-    let startDate = new Date(dateStart);
+    let startDate = new Date(date);
     startDate.setHours(0);
     startDate.setMinutes(0);
     startDate.setSeconds(1);
@@ -153,7 +155,7 @@ export default function ShiftBasedProduction() {
       const q1 = query(
         ref,
         where("time_start", ">=", Math.floor(startDate.getTime() / 1000)),
-        where("time_start", "<=", Math.floor(endDate.getTime() / 1000)),
+        // where("time_start", "<=", Math.floor(endDate.getTime() / 1000)),
         where("machine_no", "==", `${machine_number}`),
         where("isRunning", "==", true)
       );
@@ -161,7 +163,7 @@ export default function ShiftBasedProduction() {
       const q2 = query(
         MachineRef,
         where("unix_time", ">=", Math.floor(startDate.getTime() / 1000)),
-        where("unix_time", "<=", Math.floor(endDate.getTime() / 1000)),
+        // where("unix_time", "<=", Math.floor(endDate.getTime() / 1000)),
         where("machine_no", "==", `${machine_number}`)
         // where("shift", "===", "Night")
       );
@@ -244,14 +246,13 @@ export default function ShiftBasedProduction() {
 
   // console.log("pieChartData", pieChartData);
 
-
   useEffect(() => {
     const updatePieChartData = () => {
       // Calculate total production weight
       const totalProductionWeight = machineDetails?.reduce((acc, cur) => {
         return acc + Number(cur?.totalWeight || 0);
       }, 0);
-  
+
       // Calculate total damaged production weight
       const totalProductionDamageWeight = damageDetails?.reduce((acc, cur) => {
         if (cur?.damagedCategory === "damaged_product") {
@@ -278,7 +279,7 @@ export default function ShiftBasedProduction() {
         }
         return acc;
       }, 0);
-  
+
       // Update pie chart data
       setPieChartData([
         {
@@ -293,7 +294,7 @@ export default function ShiftBasedProduction() {
           name: "Scrap Weight",
           weight: totalProductionScrapWeight,
         },
-       
+
         {
           name: "Cut-Piece",
           weight: totalProductionCutWeight,
@@ -302,25 +303,47 @@ export default function ShiftBasedProduction() {
           name: "B-Grade",
           weight: totalProductionBGradeWeight,
         },
-       
       ]);
     };
-  
+
     updatePieChartData();
-  }, [machineDetails, damageDetails]); 
+  }, [machineDetails, damageDetails]);
 
   return (
-    <div>
-      <button
-        className="btn-primary"
-        onClick={() => {
-          generateReport();
-          getDamageData();
-        }}
-      >
-        Show
-      </button>
-      {/* <ShiftbasedProductionPieChart data={pieChartData} /> */}
+    <div className="my-20">
+      <div className="container mx-auto flex gap-6 items-center mb-10">
+        <h2 className="min-w-[400px] text-3xl font-bold">
+          Shift Base Production
+        </h2>
+        <input
+          type="date"
+          className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        <select
+          className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
+          value={selectedShift}
+          onChange={(e) => {
+            setSelectedShift(e.target.value);
+          }}
+        >
+          <option value="">Select Shift</option>
+          <option value="Morning">Morning</option>
+          <option value="Night">Night</option>
+        </select>
+
+        <button
+          className="btn-primary"
+          onClick={() => {
+            generateReport();
+            getDamageData();
+          }}
+        >
+          Show
+        </button>
+      </div>
+      <ShiftbasedProductionPieChart data={pieChartData} />
     </div>
   );
 }
