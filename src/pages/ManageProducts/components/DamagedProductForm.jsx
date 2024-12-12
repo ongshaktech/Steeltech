@@ -101,7 +101,7 @@ export default function DamagedProductForm({
       className={`flex flex-col gap-4 ${!confirm ? `#ddd` : ""}`}
       onSubmit={setData}
     >
-      <h2 className="text-2xl font-bold pb-6">Add Product</h2>
+      <h2 className="text-2xl font-bold pb-6">Add Damaged Product</h2>
       <label className="flex gap-6 items-center">
         <p className="w-[180px]">Machine No*</p>
 

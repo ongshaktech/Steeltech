@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import { db_firestore } from "../../Hooks/config";
 import { CiCirclePlus } from "react-icons/ci";
 import AddMachine from "./components/AddMachine";
+import SuccessMessage from "../../shared/SuccessMessage";
 
 export default function AllMachine() {
   const [showAdd, setShowAdd] = useState(false);
   let [formingMachines, setFormingMachines] = useState([]);
+  let [showSuccess, setShowSuccess] = useState(false);
 
   //  *********************************** Update Data **********************************
 
@@ -62,7 +64,15 @@ export default function AllMachine() {
           <CiCirclePlus className="w-6 h-6" />
         </button>
       </div>
-      {showAdd ? <AddMachine setShowAdd={setShowAdd} /> : null}
+      {showAdd ? <AddMachine setShowAdd={setShowAdd} setShowSuccess={setShowSuccess}/> : null}
+
+      {showSuccess && (
+        <SuccessMessage
+          showSuccess={showSuccess}
+          setShowSuccess={setShowSuccess}
+          message="Machine added successfully"
+        />
+      )}
 
       <div className="flex flex-wrap gap-4 items-center">
         {formingMachines?.map((machine) => (

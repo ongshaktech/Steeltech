@@ -2,7 +2,7 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 
-export default function AddMachine({ setShowAdd }) {
+export default function AddMachine({ setShowAdd, setShowSuccess }) {
   let [msg, setMsg] = useState("");
   let [machine_no, setMachine_no] = useState(null);
 
@@ -17,6 +17,7 @@ export default function AddMachine({ setShowAdd }) {
         forming_machine: arrayUnion(machine_no),
       });
       setMachine_no(null);
+      setShowSuccess(true)
       setShowAdd(false)
     } else {
       setMsg("Machine number cannot be empty!");
