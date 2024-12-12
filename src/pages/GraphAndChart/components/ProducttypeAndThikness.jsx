@@ -234,7 +234,7 @@ export default function ProducttypeAndThikness() {
             className="bg-primary p-2 rounded-lg text-white"
             onClick={dailyGraph}
           >
-            Set
+            Show
           </button>
         </div>
       </div>
