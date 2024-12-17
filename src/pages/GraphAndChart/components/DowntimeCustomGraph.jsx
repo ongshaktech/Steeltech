@@ -10,7 +10,7 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
     y: 0,
   });
 
-  console.log("DowntimeData", graphData)
+  console.log("DowntimeData", graphData);
 
   useEffect(() => {
     if (!graphData) return; // Exit early if no data
@@ -118,7 +118,65 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
         )}
       </div>
        */}
+
       <div
+        style={{
+          display: "flex",
+          flexDirection: "row", // Changed to horizontal layout
+          justifyContent: "start",
+          alignItems: "flex-start",
+          position: "relative", // Needed for absolute positioning of the tooltip
+          overflowX: "auto", // Add horizontal scroll if needed
+          whiteSpace: "nowrap", // Prevents wrapping of machine blocks
+        }}
+        className="rounded-xl gap-4 py-8 mt-10"
+      >
+        {segment?.slice(0, 16).map((machine) => (
+          <div
+            key={machine.machine_no}
+            className="group inline-flex flex-col items-center rounded-md "
+          >
+            {/* Horizontal Bar Container */}
+            <div className="flex flex-col h-auto w-10">
+              {machine.data.map((data, index) => (
+                <div
+                  key={index}
+                  style={{
+                    height: `${data.segmentWidth * 8}px`,
+                    backgroundColor: data.Value === 0 ? "#FF4560" : "#00E396",
+                  }}
+                  className={`h-6 cursor-pointer rounded-md`}
+                  onMouseMove={(e) => handleMouseMove(e, data)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <span
+                    style={{
+                      width: "70px",
+                      transformOrigin: "center",
+                      paddingTop: "3px",
+                    }}
+                    className="hidden group-hover:block text-black text-[.8rem] top-0 left-[-40px] relative z-50"
+                  >
+                    {data?.started}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Machine Number */}
+            <span
+              className="rounded-md p-1 text-lg mr-2"
+              style={{
+                whiteSpace: "nowrap", // Prevent text wrapping
+              }}
+            >
+              FM {machine.machine_no}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -144,13 +202,11 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
               {machine.machine_no}
             </span>
 
-            {/* Bar container */}
             <div
               style={{
                 width: "auto",
                 height: "20px",
                 display: "inline-flex",
-                // borderRadius: "5px",
               }}
             >
               {machine.data.map((data, index) => (
@@ -180,7 +236,6 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
                       left: "-5px",
                       width: "70px",
                       transformOrigin: "center",
-                    //   transform: "rotate(-30deg)",
                       display: "block",
                       paddingTop: "3px",
                     }}
@@ -202,87 +257,7 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
             <br />
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 }
-
-
-
-
-
-// import React, { Component } from 'react';
-// import CanvasJSReact from '@canvasjs/react-charts';
-// //var CanvasJSReact = require('@canvasjs/react-charts');
- 
-// var CanvasJS = CanvasJSReact.CanvasJS;
-// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
- 
-// class DowntimeCustomGraph extends Component {
-//     render() {
-//         const options = {
-//             animationEnabled: true,
-//             theme: "light2",
-//             title: {
-//                 text: "Number of Students in Each Room"
-//             },
-//             axisX: {
-//                 title: "Rooms"
-//             },
-//             axisY: {
-//                 title: "Percentage"
-//             },
-//             toolTip: {
-//                 shared: true
-//             },
-//             legend: {
-//                 horizontalAlign: "right",
-//                 verticalAlign: "center",
-//                 reversed: true
-//             },
-//             data: [{
-//                 type: "stackedColumn100",
-//                 name: "Boys",
-//                 showInLegend: "true",
-//                 indexLabel: "#percent %",
-//                 indexLabelPlacement: "inside",
-//                 indexLabelFontColor: "white",
-//                 dataPoints: [
-//                     { y: 45, label: "Cafeteria" },
-//                     { y: 24, label: "Lounge" },
-//                     { y: 68, label: "Games Room" },
-//                     { y: 24, label: "Lecture Hall" },
-//                     { y: 15, label: "Library" }
-//                 ]
-//             }, {
-//                 type: "stackedColumn100",
-//                 name: "Girls",
-//                 showInLegend: "true",
-//                 indexLabel: "#percent %",
-//                 indexLabelPlacement: "inside",
-//                 indexLabelFontColor: "white",
-//                 dataPoints: [
-//                     { y: 22, label: "Cafeteria" },
-//                     { y: 17, label: "Lounge" },
-//                     { y: 32, label: "Games Room" },
-//                     { y: 48, label: "Lecture Hall" },
-//                     { y: 25, label: "Library" }
-//                 ]
-//             }]
-//         };
-
-//         const data = this.props.graphData;
-
-//         console.log("DowntimeData", data)
- 
-//         return (
-//             <div>
-//                 <CanvasJSChart options={options}
-//                 /* onRef={ref => this.chart = ref} */
-//                 />
-//                 {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-//             </div >
-//         );
-//     }
-// }
-// export default DowntimeCustomGraph;        

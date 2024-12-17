@@ -1,4 +1,11 @@
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useRef, useState } from "react";
 import { db_firestore } from "../../../Hooks/config";
 // import DowntimeGraph from "./DowntimeGraph";
@@ -175,7 +182,7 @@ export default function DowntimeTracking() {
       <div>
         <div className="flex gap-4 items-center">
           <h6 className="min-w-[450px] text-3xl font-bold">
-          Downtime Tracking
+            Downtime Tracking
           </h6>
 
           <input
@@ -183,7 +190,7 @@ export default function DowntimeTracking() {
             className="w-full p-2 rounded-md border border-black outline-none focus:outline-none"
             value={date}
             onChange={(e) => {
-                setDate(e.target.value);
+              setDate(e.target.value);
               setDataPeriod(e.target.valueAsDate);
             }}
             // ref={dateInput}
@@ -196,29 +203,6 @@ export default function DowntimeTracking() {
             Set
           </button>
         </div>
-
-        <h6 className="flex items-center mt-8">
-          <span
-            style={{
-              width: "1rem",
-              height: "1rem",
-              background: "red",
-              display: "block",
-              margin: "0rem 1rem",
-            }}
-          ></span>{" "}
-          Idle
-          <span
-            style={{
-              width: "1rem",
-              height: "1rem",
-              background: "green",
-              display: "block",
-              margin: "0rem 1rem",
-            }}
-          ></span>{" "}
-          Active
-        </h6>
       </div>
       {/* <DowntimeGraph /> */}
 
@@ -228,11 +212,36 @@ export default function DowntimeTracking() {
           No Data Found
         </h1>
       ) : (
-        <div className=" max-h-[500px] overflow-y-scroll">
-
-        <DowntimeCustomGraph graphData={graphData} thresholdTime={900} />
+        <div className=" max-h-[10000px] overflow-y-scroll">
+          <DowntimeCustomGraph graphData={graphData} thresholdTime={900} />
         </div>
       )}
+
+      <h6 className="flex items-center justify-center mt-8">
+       
+        <span
+          style={{
+            width: "1rem",
+            height: "1rem",
+            background: "green",
+            display: "block",
+            margin: "0rem 1rem",
+            borderRadius: "10px",
+          }}
+        ></span>{" "}
+        Active
+        <span
+          style={{
+            width: "1rem",
+            height: "1rem",
+            background: "red",
+            display: "block",
+            margin: "0rem 1rem",
+            borderRadius: "10px",
+          }}
+        ></span>{" "}
+        Inactive
+      </h6>
 
       {loading ? (
         <h1
