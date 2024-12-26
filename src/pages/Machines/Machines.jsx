@@ -34,7 +34,7 @@ export default function Machines() {
     const threshold_sec = 10 * 60; // 10 minutes
 
     GetMachineIndexs().then((data) => {
-      const ref = collection(db_firestore, `machineStatus`);
+      const ref = collection(db_firestore, `machineLatestStatus`);
 
       let f_machine_arr = data?.forming_machine || [];
       let totalMachines = f_machine_arr.length;

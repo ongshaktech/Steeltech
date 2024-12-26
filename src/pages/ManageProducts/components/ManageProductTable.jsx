@@ -48,7 +48,7 @@ export default function ManageProductTable({
     }
   }, [shiftData]);
 
-  const { addDocument: addDamagedProduct } = useFirestore("damagedProducts");
+  const { addDocument: addDamagedProduct,  } = useFirestore("damagedProducts");
 
   useEffect(() => {
     if (Object.keys(damagedProductData).length !== 0) {
