@@ -129,7 +129,7 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
           overflowX: "auto", // Add horizontal scroll if needed
           whiteSpace: "nowrap", // Prevents wrapping of machine blocks
         }}
-        className="rounded-xl gap-4 py-8 mt-10"
+        className="rounded-xl gap-10 py-16 mt-10"
       >
         {segment?.slice(0, 16).map((machine) => (
           <div
@@ -155,7 +155,8 @@ export default function DowntimeCustomGraph({ graphData, thresholdTime }) {
                       transformOrigin: "center",
                       paddingTop: "3px",
                     }}
-                    className="hidden group-hover:block text-black text-[.8rem] top-0 left-[-40px] relative z-50"
+                    className="block text-black text-[.8rem] -top-10 right-[-32px] -rotate-45  relative z-50"
+                    // className="hidden group-hover:block text-black text-[.8rem] top-0 left-[-40px] relative z-50"
                   >
                     {data?.started}
                   </span>
